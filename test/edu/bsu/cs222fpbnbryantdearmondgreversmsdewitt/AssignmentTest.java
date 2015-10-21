@@ -9,6 +9,7 @@ public class AssignmentTest {
 	private Assignment finalProject = Assignment.Builder//
 			.withName("Final Project")//
 			.andDueDate(LocalDate.of(2015, 12, 31))//
+			.andStartDate(LocalDate.of(2160, 3, 29))//
 			.build();
 
 	@Test
@@ -21,6 +22,11 @@ public class AssignmentTest {
 	public void AssignmentDueDateIs31Dec2015() {
 		LocalDate testDate = LocalDate.of(2015, 12, 31);
 		Assert.assertEquals(testDate, finalProject.getDueDate());
+	}
+	@Test
+	public void AssignmentStartDateIs29Feb2160(){
+		LocalDate testDate = LocalDate.of(2160, 3, 29);
+		Assert.assertEquals(testDate, finalProject.getStartDate());
 	}
 
 }
