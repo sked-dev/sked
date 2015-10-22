@@ -6,7 +6,7 @@
 
 ## Who made this?
 
-![Garrett Evers](https://avatars1.githubusercontent.com/u/13851785?s=144) | ![Brody Bryant](https://avatars0.githubusercontent.com/u/13963054?s=144) | ![Matheu Dewitt](https://avatars1.githubusercontent.com/u/13967132?s=144) | ![Austin "Paco" DeArmond](https://avatars3.githubusercontent.com/u/10604584?s=460)
+![Garrett Evers](https://avatars1.githubusercontent.com/u/13851785?s=96) | ![Brody Bryant](https://avatars0.githubusercontent.com/u/13963054?s=96) | ![Matheu Dewitt](https://avatars1.githubusercontent.com/u/13967132?s=96) | ![Austin "Paco" DeArmond](https://avatars3.githubusercontent.com/u/10604584?s=96)
 ---|---|---|---
 Garrett Evers | Brody Bryant | Matheu Dewitt | Austin "Paco" DeArmond
 
