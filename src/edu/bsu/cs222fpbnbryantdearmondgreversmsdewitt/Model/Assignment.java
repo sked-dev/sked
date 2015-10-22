@@ -1,4 +1,4 @@
-package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt;
+package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.Model;
 
 import java.time.LocalDate;
 
