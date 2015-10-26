@@ -31,7 +31,7 @@ public class SkedApplication extends Application {
 	}
 
 	private Scene getMainScene() throws Exception {
-		Pane pane = (Pane) FXMLLoader.load(getClass().getResource("fxml_application_frame.fxml"));
+		Pane pane = (Pane) FXMLLoader.load(getClass().getResource("MainView.fxml"));
 		return new Scene(pane);
 	}
 
