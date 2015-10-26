@@ -17,9 +17,9 @@ public class Subtask {
 			this.difficulty = dif;
 			return this;
 		}
-		
+
 		public Builder andCompletion(boolean b) {
-			this.completion= b;
+			this.completion = b;
 			return this;
 		}
 
@@ -66,5 +66,22 @@ public class Subtask {
 
 	public void setCompletion(boolean b) {
 		completion = b;
+	}
+
+	public boolean getCompletion() {
+		return completion;
+	}
+
+	public boolean equals(Subtask subtask) {
+		if (description.equals(subtask.getDescription())
+				&& (completion == subtask.getCompletion())
+				&& (difficulty == subtask.getDifficulty())) {
+			return true;
+		}
+		return false;
+	}
+	
+	public String toString() {
+		return description + '\n' + completion + '\n' + difficulty ;
 	}
 }
