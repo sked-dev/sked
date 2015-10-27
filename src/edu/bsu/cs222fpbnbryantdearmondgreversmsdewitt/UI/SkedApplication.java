@@ -21,6 +21,7 @@ public class SkedApplication extends Application {
 	private void configure(Stage stage) {
 		stage.setTitle("SKED");
 		primaryPane.navigateToDefault();
+		primaryPane.setPrefSize(500, 300);
 		stage.setScene(new Scene(primaryPane));
 	}
 

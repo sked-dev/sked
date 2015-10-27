@@ -8,6 +8,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.event.EventType;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -29,7 +30,7 @@ public class NavigationButtonsBox extends Pane {
 
 	}
 
-	private VBox container = new VBox();
+	private VBox container = new VBox(15);
 	private NavigationButton currentButton;
 
 	public static NavigationButtonsBox loadNavigationButtons() {
