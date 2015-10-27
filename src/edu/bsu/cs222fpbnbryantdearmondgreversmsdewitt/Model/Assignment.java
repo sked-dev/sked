@@ -1,6 +1,7 @@
 package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.Model;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 
 public class Assignment {
 
@@ -51,6 +52,7 @@ public class Assignment {
 	private String name;
 	private LocalDate dueDate;
 	private LocalDate startDate;
+	private SubtaskList subtasks = new SubtaskList();
 
 	private Assignment(Builder assignmentBuilder) {
 		name = assignmentBuilder.name;
@@ -68,5 +70,9 @@ public class Assignment {
 
 	public LocalDate getStartDate() {
 		return startDate;
+	}
+
+	public void addSubtask(Subtask task) {
+		subtasks.add(task);
 	}
 }
