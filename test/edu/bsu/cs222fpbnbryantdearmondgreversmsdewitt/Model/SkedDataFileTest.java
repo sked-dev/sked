@@ -86,27 +86,5 @@ public class SkedDataFileTest {
 		}
 	}
 
-	@Test
-	public void dataFileWithAddedAssignmentHasSameContentAsTestFile() throws Exception {
-		SkedDataFile oldFile = copySafeFile("user_one_assignment");
-		SkedData data = oldFile.load();
-		data.getAssignments().add(testAddableAssignment);
-		oldFile.write(data);
-
-		assertFilesEqual(oldFile.getFile(), new File("res/user_two_assignments.json.safe"));
-	}
-
-	private void assertFilesEqual(File file1, File file2) throws Exception {
-		try (BufferedReader reader1 = new BufferedReader(new FileReader(file1));
-				BufferedReader reader2 = new BufferedReader(new FileReader(file2))) {
-			int character1;
-			int character2;
-			while ((character1 = reader1.read()) != -1) {
-				character2 = reader2.read();
-				Assert.assertEquals(character1, character2);
-			}
-			Assert.assertEquals(reader2.read(), -1);
-		}
-	}
 
 }
