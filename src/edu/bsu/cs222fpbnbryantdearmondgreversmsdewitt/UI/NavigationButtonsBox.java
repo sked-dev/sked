@@ -6,6 +6,7 @@ import edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI.NavigationButtonsBox.Na
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventTarget;
 import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -29,15 +30,11 @@ public class NavigationButtonsBox extends Pane {
 	}
 
 	private VBox container = new VBox();
-	private HashMap<String, Integer> names = new HashMap<>();
 	private NavigationButton currentButton;
 
 	public static NavigationButtonsBox loadNavigationButtons() {
 		NavigationButtonsBox box = new NavigationButtonsBox();
-		box.add(new NavigationButton("Home"));
-		box.add(new NavigationButton("Classes"));
-		box.add(new NavigationButton("Assignments"));
-		box.add(new NavigationButton("Settings"));
+		
 		return box;
 	}
 	
@@ -48,9 +45,6 @@ public class NavigationButtonsBox extends Pane {
 	
 	public void add(NavigationButton button) {
 		container.getChildren().add(button);
-		String buttonName = button.getName();
-		Integer buttonIndex = container.getChildren().indexOf(button);
-		names.put(buttonName, buttonIndex);
 		configureActions(button);
 	}
 
@@ -88,14 +82,15 @@ public class NavigationButtonsBox extends Pane {
 	public void setOnNavigate(EventHandler<Event> handler) {
 		this.setEventHandler(NavigateEvent.NAVIGATED, handler);
 	}
-	
-	public Pane getContentPane() {
-		return currentButton.getContentPane();
-	}
+
 
 	public void navigateByIndex(int index) {
 		NavigationButton button = (NavigationButton) container.getChildren().get(index);
 		navigate(button);
+	}
+	
+	public NavigationButton getCurrentButton() {
+		return currentButton;
 	}
 	
 	
