@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class SkedApplication extends Application {
 	
-	private final Pane primaryPane = new NavigationManager();
+	private final NavigationManager primaryPane = new NavigationManager();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -15,6 +15,7 @@ public class SkedApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		primaryPane.navigateToDefault();
 		configure(primaryStage);
 		primaryStage.show();
 	}
@@ -22,7 +23,6 @@ public class SkedApplication extends Application {
 	private void configure(Stage stage) {
 		stage.setTitle("SKED");
 		stage.setScene(new Scene(primaryPane));
-		
 	}
 
 	

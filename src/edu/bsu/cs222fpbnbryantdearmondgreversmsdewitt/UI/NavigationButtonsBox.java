@@ -2,14 +2,32 @@ package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI;
 
 import java.util.HashMap;
 
+import edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI.NavigationButtonsBox.NavigateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class NavigationButtonsBox extends Pane {
 	
+	public static class NavigateEvent extends Event {
+		
+		private static final long serialVersionUID = 1L;
+		public static final EventType<NavigateEvent> NAVIGATED = new EventType<>(Event.ANY, "NAVIGATED");
+		
+		public NavigateEvent() {
+			this(NAVIGATED);
+		}
+
+		public NavigateEvent(EventType<? extends Event> eventType) {
+			super(eventType);
+		}
+
+	}
+
 	private VBox container = new VBox();
 	private HashMap<String, Integer> names = new HashMap<>();
 	private NavigationButton currentButton;
@@ -53,7 +71,9 @@ public class NavigationButtonsBox extends Pane {
 
 	private void navigate(NavigationButton button) {
 		currentButton = button;
+		button.setSelected(true);
 		untoggleOthers();
+		this.fireEvent(new NavigateEvent());
 	}
 
 	private void untoggleOthers() {
@@ -63,6 +83,19 @@ public class NavigationButtonsBox extends Pane {
 				button.setSelected(false);
 			}
 		}
+	}
+	
+	public void setOnNavigate(EventHandler<Event> handler) {
+		this.setEventHandler(NavigateEvent.NAVIGATED, handler);
+	}
+	
+	public Pane getContentPane() {
+		return currentButton.getContentPane();
+	}
+
+	public void navigateByIndex(int index) {
+		NavigationButton button = (NavigationButton) container.getChildren().get(index);
+		navigate(button);
 	}
 	
 	
