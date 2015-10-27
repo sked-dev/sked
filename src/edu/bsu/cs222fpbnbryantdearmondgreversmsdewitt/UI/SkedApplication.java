@@ -1,17 +1,13 @@
 package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI;
 
-import java.net.URL;
-
-import edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.Model.*;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class SkedApplication extends Application {
 	
-	private final SkedDataFile file = new SkedDataFile();
+	private final Pane primaryPane = new NavigationManager();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -20,19 +16,17 @@ public class SkedApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		configure(primaryStage);
+		primaryStage.show();
 	}
 
-	private void configure(Stage stage) throws Exception {
+	private void configure(Stage stage) {
 		stage.setTitle("SKED");
-		Scene scene = getMainScene();
-		stage.setScene(scene);
-		stage.show();
+		stage.setScene(new Scene(primaryPane));
 		
 	}
 
-	private Scene getMainScene() throws Exception {
-		Pane pane = (Pane) FXMLLoader.load(getClass().getResource("MainView.fxml"));
-		return new Scene(pane);
-	}
+	
+	
+	
 
 }

@@ -20,11 +20,4 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/edu/bsu/cs222fpbnbryantdearmondgreversmsdewitt/UI/MainView.fxml</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/src/edu/bsu/cs222fpbnbryantdearmondgreversmsdewitt/MainView.fxml</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
