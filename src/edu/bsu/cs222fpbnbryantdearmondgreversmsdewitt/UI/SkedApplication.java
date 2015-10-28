@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 public class SkedApplication extends Application {
 	
 	private final NavigationPane primaryPane = NavigationPane.configure();
+	private static final SkedDataFile dataFile = new SkedDataFile();
 	private static SkedData data = getData();
 
 	public static void main(String[] args) {
@@ -33,12 +34,16 @@ public class SkedApplication extends Application {
 	private void configure(Stage stage) {
 		stage.setTitle("SKED");
 		primaryPane.navigateToDefault();
-		primaryPane.setPrefSize(500, 300);
+		primaryPane.setPrefSize(500, 600);
 		stage.setScene(new Scene(primaryPane));
 	}
 
 	public static SkedData getSkedData() {
 		return data;
+	}
+	
+	public static void saveSkedData() throws SkedDataWriteFailedException {
+		dataFile.write(getSkedData());
 	}
 
 	

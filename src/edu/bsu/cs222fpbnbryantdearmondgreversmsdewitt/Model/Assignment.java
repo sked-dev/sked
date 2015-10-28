@@ -63,15 +63,27 @@ public class Assignment {
 	public String getName() {
 		return name;
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public LocalDate getDueDate() {
 		return dueDate;
+	}
+	
+	public void setDueDate(LocalDate date) {
+		this.dueDate = date;
 	}
 
 	public LocalDate getStartDate() {
 		return startDate;
 	}
 
+	public void setStartDate(LocalDate date) {
+		this.startDate = date;
+	}
+	
 	public void addSubtask(Subtask task) {
 		subtasks.add(task);
 	}
