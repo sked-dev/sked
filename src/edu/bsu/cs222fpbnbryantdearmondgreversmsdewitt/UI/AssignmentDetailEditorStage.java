@@ -33,7 +33,15 @@ public class AssignmentDetailEditorStage extends Stage {
 	
 	public AssignmentDetailEditorStage(Assignment assignment) {
 		this.assignment = assignment;
+		fillValues();
 		configure();
+	}
+	
+	private void fillValues() {
+		if (assignment == null) return;
+		nameTextField.setText(assignment.getName());
+		startDateField.setValue(assignment.getStartDate());
+		dueDateField.setValue(assignment.getDueDate());
 	}
 	
 	private void configure() {
@@ -107,11 +115,9 @@ public class AssignmentDetailEditorStage extends Stage {
 		ArrayList<String> invalidFields = new ArrayList<>();
 		if (nameTextField.getText().isEmpty()) {
 			invalidFields.add("assignment name");
-			System.out.println("name");
 		}
 		if (startDateField.getValue().compareTo(dueDateField.getValue()) > 1) {
 			invalidFields.add("start and due date");
-			System.out.println("dates");
 		}
 		return invalidFields;
 	}

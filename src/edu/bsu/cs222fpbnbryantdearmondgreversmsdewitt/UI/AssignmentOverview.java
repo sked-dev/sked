@@ -1,21 +1,54 @@
 package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI;
 
+import java.security.acl.Owner;
 import java.time.LocalDate;
 import java.time.Period;
 
 import edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.Model.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class AssignmentOverview extends GridPane {
 	
+	private Assignment assignment;
+	private Label assignmentName = new Label();
+	private Label assignmentDueDate = new Label();
+	
 	public AssignmentOverview(Assignment assignment) {
 		super();
+		this.assignment = assignment;
 		this.setStyle("-fx-background-color: white; -fx-border-color: black;");
 		this.setPadding(new Insets(15));
-		this.add(new Label(assignment.getName()), 0, 0, 1, 1);
-		this.add(new Label(getDueDateString(assignment.getDueDate())), 0, 1);
+		getValues();
+		this.add(assignmentName, 0, 0, 1, 1);
+		this.add(assignmentDueDate, 0, 1);
+		this.add(getEditHyperlink(), 0, 2);
+	}
+	
+	private void getValues() {
+		assignmentName.setText(assignment.getName());
+		assignmentDueDate.setText(getDueDateString(assignment.getDueDate()));
+	}
+
+	private Hyperlink getEditHyperlink() {
+		Hyperlink editLink = new Hyperlink("Edit");
+		editLink.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				AssignmentDetailEditorStage editor = new AssignmentDetailEditorStage(assignment);
+				editor.showAndWait();
+				getValues();
+			}
+			
+		});
+		return editLink;
+		
 	}
 
 	private String getDueDateString(LocalDate dueDate) {
