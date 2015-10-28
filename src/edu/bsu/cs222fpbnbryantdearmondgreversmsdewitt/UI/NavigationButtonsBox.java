@@ -1,14 +1,9 @@
 package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI;
 
-import java.util.HashMap;
-
-import edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI.NavigationButtonsBox.NavigateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventTarget;
 import javafx.event.EventType;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;

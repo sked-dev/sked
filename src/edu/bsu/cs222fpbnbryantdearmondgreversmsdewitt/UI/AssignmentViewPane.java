@@ -1,9 +1,12 @@
 package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI;
 
 import edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.Model.AssignmentList;
-import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 public class AssignmentViewPane extends NavigationTargetPane {
 	
@@ -27,12 +30,33 @@ public class AssignmentViewPane extends NavigationTargetPane {
 	}
 
 	private void setUpPane() {
+		setUpAssignmentGrid();
+		
+		addActionButtons();
+	}
+
+	private void setUpAssignmentGrid() {
 		AssignmentList assignments = SkedApplication.getSkedData().getAssignments();
 		AssignmentListGrid list = new AssignmentListGrid(assignments);
 		list.setMinSize(120, 120);
-		list.setPrefSize(400, 300);
+		list.setPrefSize(550, 300);
 		list.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		pane.setCenter(list);
+	}
+
+	private void addActionButtons() {
+		HBox actionButtons = new HBox();
+		Button newAssignmentButton = new Button("Add assignment...");
+		newAssignmentButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				AssignmentDetailEditorStage.newAssignment();
+				setUpAssignmentGrid();
+			}
+		});
+		actionButtons.getChildren().add(newAssignmentButton);
+		pane.setBottom(actionButtons);
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI;
 
 import edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.Model.*;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
