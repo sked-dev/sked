@@ -6,11 +6,12 @@ import javafx.scene.image.Image;
 public class TestNavigationPane extends NavigationTargetPane {
 	
 	private final String label;
-	private final Image icon = configureIcon();
+	private final Image icon;
 	
 	public TestNavigationPane(String label) {
 		super();
 		this.label = label;
+		this.icon = configureIcon();
 		this.getChildren().add(new Label(label));
 	}
 	

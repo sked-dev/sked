@@ -14,7 +14,6 @@ public abstract class NavigationTargetPane extends Pane {
 	
 	protected Image getImageFromAssetName(String name) throws IOException {
 		File file = new File("assets/" + name);
-		InputStream stream = new FileInputStream(file);
-		return new Image(stream);
+		return new Image(file.toURI().toURL().toString());
 	}
 }
