@@ -1,6 +1,5 @@
 package edu.bsu.cs222fpbnbryantdearmondgreversmsdewitt.UI;
 
-import java.io.File;
 import java.io.IOException;
 
 import javafx.scene.image.Image;
@@ -11,7 +10,6 @@ public abstract class NavigationTargetPane extends Pane {
 	public abstract String getLabel();
 	
 	protected Image getImageFromAssetName(String name) throws IOException {
-		File file = new File("assets/" + name);
-		return new Image(file.toURI().toURL().toString());
+		return new Image(getClass().getResource("/assets/" + name).toString());
 	}
 }
