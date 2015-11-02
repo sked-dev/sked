@@ -22,8 +22,12 @@ There are a plethora of to-do list apps out on every app market, but they are mo
 
 ### What can it do?
 
-SKED is currently in the development stage.  v0.1 (beta) is scheduled to be released at the end of October, and will have the following functions:
+SKED is still in an early development stage.  v0.1 allows you to:
 
- * View and modify a list of assignments and their due dates
- * Split assignments into pieces by creating subtasks
- * Get visual feedback of the remaining time for the assignment as well as progress made.
+ * View and modify a list of assignments and due dates
+
+### How do I get it?
+
+Make sure Java is up to date on your machine.  SKED is currently built on Java 1.8.
+
+Next, download and run [the executable](https://github.com/bsu-cs222-fall2015/FP-bnbryant-dearmond-grevers-msdewitt/releases/download/0.1/sked_v0.1.jar).
