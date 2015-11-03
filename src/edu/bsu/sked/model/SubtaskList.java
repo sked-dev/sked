@@ -5,6 +5,8 @@ import java.util.Iterator;
 
 public class SubtaskList extends ArrayList<Subtask> {
 	
+	private static final long serialVersionUID = 1L;
+
 	public SubtaskList() {
 		super();
 	}

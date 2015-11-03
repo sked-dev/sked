@@ -1,7 +1,6 @@
 package edu.bsu.sked.model;
 
 import java.time.LocalDate;
-import java.util.Iterator;
 
 public class Assignment {
 

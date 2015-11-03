@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import org.junit.*;
 
-import edu.bsu.sked.model.*;
-
 public class AssignmentTest {
 	private Assignment finalProject = Assignment.Builder//
 			.withName("Final Project")//

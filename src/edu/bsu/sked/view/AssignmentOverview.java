@@ -1,6 +1,5 @@
 package edu.bsu.sked.view;
 
-import java.security.acl.Owner;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -8,7 +7,6 @@ import edu.bsu.sked.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
