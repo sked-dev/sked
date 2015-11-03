@@ -5,7 +5,7 @@ public class Subtask {
 	public static class Builder {
 		private String description = null;
 		private boolean completion = false;
-		private int difficulty = Difficulty.EASY;
+		private Difficulty difficulty = Difficulty.EASY;
 
 		public static Builder withDescription(String description) {
 			Builder builder = new Builder();
@@ -13,7 +13,7 @@ public class Subtask {
 			return builder;
 		}
 
-		public Builder andDifficulty(int dif) {
+		public Builder andDifficulty(Difficulty dif) {
 			this.difficulty = dif;
 			return this;
 		}
@@ -32,28 +32,20 @@ public class Subtask {
 		}
 		
 		public boolean ready() {
-			if (!Difficulty.isValidDifficulty(difficulty)) {
-				return false;
-			} else if (description == null) {
+			if (description == null) {
 				return false;
 			}
 			return true;
 		}
 	}
 	
-	public static final class Difficulty {
-		public static final int EASY = 1;
-		public static final int MEDIUM = 2;
-		public static final int HARD = 3;
-		
-		public static boolean isValidDifficulty(int i) {
-			return i == EASY || i == MEDIUM || i == HARD;
-		}
+	public enum Difficulty {
+		EASY, NORMAL, DIFFICULT
 	}
 
 	private String description;
 	private boolean completion;
-	private int difficulty;
+	private Difficulty difficulty;
 
 	private Subtask(Builder subtaskBuilder) {
 		description = subtaskBuilder.description;
@@ -70,29 +62,15 @@ public class Subtask {
 	}
 
 	public boolean isComplete() {
-		if (completion == true) {
-			return true;
-		}
-		return false;
+		return completion;
 	}
 
-	public boolean isNotComplete() {
-		if (completion == false) {
-			return true;
-		}
-		return false;
-	}
-
-	public int getDifficulty() {
+	public Difficulty getDifficulty() {
 		return difficulty;
 	}
 	
-	public void setDifficulty(int difficulty) {
-		if (Difficulty.isValidDifficulty(difficulty)) {
-			this.difficulty = difficulty;
-		} else {
-			throw new IllegalArgumentException();
-		}
+	public void setDifficulty(Difficulty difficulty) {
+		this.difficulty = difficulty;
 	}
 
 	public void setCompletion(boolean b) {
@@ -102,16 +80,39 @@ public class Subtask {
 	public boolean getCompletion() {
 		return completion;
 	}
-
-	public boolean equals(Subtask subtask) {
-		if (description.equals(subtask.getDescription())
-				&& (completion == subtask.getCompletion())
-				&& (difficulty == subtask.getDifficulty())) {
-			return true;
-		}
-		return false;
-	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (completion ? 1231 : 1237);
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subtask other = (Subtask) obj;
+		if (completion != other.completion)
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (difficulty != other.difficulty)
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
 		return description + '\n' + completion + '\n' + difficulty ;
 	}
