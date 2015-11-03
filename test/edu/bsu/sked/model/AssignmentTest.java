@@ -12,37 +12,36 @@ public class AssignmentTest {
 			.build();
 
 	@Test
-	public void AssignmentNameIsFinalProject() {
+	public void testAssignmentNameIsFinalProject() {
 		String name = finalProject.getName();
 		Assert.assertEquals(name, "Final Project");
 	}
 
 	@Test
-	public void AssignmentDueDateIs31Dec2015() {
+	public void testAssignmentDueDateIs31Dec2015() {
 		LocalDate testDate = LocalDate.of(2015, 12, 31);
 		Assert.assertEquals(testDate, finalProject.getDueDate());
 	}
 
 	@Test
-	public void AssignmentStartDateIs29Feb2160() {
+	public void testAssignmentStartDateIs29Feb2160() {
 		LocalDate testDate = LocalDate.of(2014, 3, 29);
 		Assert.assertEquals(testDate, finalProject.getStartDate());
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void builderWithUnsetNameThrowsIllegalStateException() {
+	public void testBuilderWithUnsetNameThrowsIllegalStateException() {
 		Assignment.Builder b = new Assignment.Builder();
 		b.andDueDate(LocalDate.of(2015, 12, 31))//
-		.andStartDate(LocalDate.of(2015, 3, 29))//
-		.build();
+				.andStartDate(LocalDate.of(2015, 3, 29))//
+				.build();
 	}
-	
+
 	@Test(expected = IllegalStateException.class)
-	public void builderWithUnsetDueDateThrowsIllegalStateException() {
+	public void testBuilderWithUnsetDueDateThrowsIllegalStateException() {
 		Assignment.Builder//
-		.withName("Final Project")//
-		.andStartDate(LocalDate.of(2015, 3, 29))
-		.build();
+				.withName("Final Project")//
+				.andStartDate(LocalDate.of(2015, 3, 29)).build();
 	}
 
 }

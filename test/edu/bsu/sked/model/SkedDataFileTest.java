@@ -31,19 +31,19 @@ public class SkedDataFileTest {
 	}
 
 	@Test
-	public void fileDoesNotExist() throws Exception {
+	public void testFileDoesNotExist() throws Exception {
 		deleteTempFile();
 		Assert.assertFalse(tempFile.exists());
 	}
 
 	@Test
-	public void fileIsCreatedOnLoad() throws Exception {
+	public void testFileIsCreatedOnLoad() throws Exception {
 		tempFile.load();
 		Assert.assertTrue(tempFile.exists());
 	}
 
 	@Test
-	public void unreadableFileThrowsSkedDataReadFailedException() throws Exception {
+	public void testUnreadableFileThrowsSkedDataReadFailedException() throws Exception {
 		Assume.assumeTrue(unreadableFile.exists());
 
 		try {
@@ -55,7 +55,7 @@ public class SkedDataFileTest {
 	}
 
 	@Test
-	public void unwritableFileThrowsSkedDataWriteFailedException() throws Exception {
+	public void testUnwritableFileThrowsSkedDataWriteFailedException() throws Exception {
 		Assume.assumeTrue(unwritableFile.exists());
 
 		try {
@@ -66,6 +66,4 @@ public class SkedDataFileTest {
 			Assert.assertEquals(SkedDataWriteFailedException.class, e.getClass());
 		}
 	}
-
-
 }
