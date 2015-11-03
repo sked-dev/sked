@@ -1,7 +1,8 @@
 package edu.bsu.sked.model;
 
 import java.time.LocalDate;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Assignment {
 
@@ -9,6 +10,7 @@ public class Assignment {
 		private String name = null;
 		private LocalDate dueDate = null;
 		private LocalDate startDate = LocalDate.now();
+		private ArrayList<Subtask> subtasks = new ArrayList<>();
 
 		public static Builder withName(String name) {
 			Builder builder = new Builder();
@@ -23,6 +25,11 @@ public class Assignment {
 
 		public Builder andStartDate(LocalDate startDate) {
 			this.startDate = startDate;
+			return this;
+		}
+		
+		public Builder andSubtasks(List<Subtask> tasks) {
+			this.subtasks = new ArrayList<Subtask>(tasks);
 			return this;
 		}
 
@@ -52,12 +59,13 @@ public class Assignment {
 	private String name;
 	private LocalDate dueDate;
 	private LocalDate startDate;
-	private SubtaskList subtasks = new SubtaskList();
+	private final ArrayList<Subtask> subtasks;
 
 	private Assignment(Builder assignmentBuilder) {
 		name = assignmentBuilder.name;
 		dueDate = assignmentBuilder.dueDate;
 		startDate = assignmentBuilder.startDate;
+		subtasks = assignmentBuilder.subtasks;
 	}
 
 	public String getName() {
@@ -84,7 +92,11 @@ public class Assignment {
 		this.startDate = date;
 	}
 	
-	public void addSubtask(Subtask task) {
-		subtasks.add(task);
+	/**
+	 * @return
+	 * 		A <i>modifiable</i> ArrayList of subtasks.
+	 */
+	public ArrayList<Subtask> getSubtasks() {
+		return subtasks;
 	}
 }
