@@ -1,6 +1,8 @@
 package edu.bsu.sked.view;
 
-import edu.bsu.sked.model.AssignmentList;
+import java.util.List;
+
+import edu.bsu.sked.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -36,7 +38,7 @@ public class AssignmentViewPane extends NavigationTargetPane {
 	}
 
 	private void setUpAssignmentGrid() {
-		AssignmentList assignments = SkedApplication.getSkedData().getAssignments();
+		List<Assignment> assignments = SkedApplication.getSkedData().getAssignments();
 		AssignmentListGrid list = new AssignmentListGrid(assignments);
 		list.setMinSize(120, 120);
 		list.setPrefSize(550, 300);
