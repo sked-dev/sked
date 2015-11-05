@@ -59,7 +59,7 @@ public class SkedDataFileTest {
 		Assume.assumeTrue(unwritableFile.exists());
 
 		try {
-			SkedData file = unwritableFile.load();
+			SkedDataContainer file = unwritableFile.load();
 			unwritableFile.write(file);
 			Assert.fail("Expected exception " + SkedDataWriteFailedException.class.getName() + " was not thrown.");
 		} catch (Exception e) {

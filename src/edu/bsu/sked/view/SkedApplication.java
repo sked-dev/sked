@@ -9,7 +9,7 @@ public class SkedApplication extends Application {
 	
 	private final NavigationPane primaryPane = NavigationPane.configure();
 	private static final SkedDataFile dataFile = new SkedDataFile();
-	private static SkedData data = getData();
+	private static SkedDataContainer data = getData();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -22,12 +22,12 @@ public class SkedApplication extends Application {
 		primaryStage.show();
 	}
 
-	private static SkedData getData() {
+	private static SkedDataContainer getData() {
 		try {
 			return new SkedDataFile().load();
 		} catch (SkedDataReadFailedException e) {
 			System.out.println("Could not load data");
-			return SkedData.initialize();
+			return SkedDataContainer.initialize();
 		}
 	}
 
@@ -38,7 +38,7 @@ public class SkedApplication extends Application {
 		stage.setScene(new Scene(primaryPane));
 	}
 
-	public static SkedData getSkedData() {
+	public static SkedDataContainer getSkedData() {
 		return data;
 	}
 	
