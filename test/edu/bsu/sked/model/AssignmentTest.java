@@ -10,6 +10,8 @@ public class AssignmentTest {
 			.andDueDate(LocalDate.of(2015, 12, 31))//
 			.andStartDate(LocalDate.of(2014, 3, 29))//
 			.build();
+	
+	private LocalDate testToday = LocalDate.of(2015, 1, 1);
 
 	@Test
 	public void testAssignmentNameIsFinalProject() {
@@ -42,6 +44,39 @@ public class AssignmentTest {
 		Assignment.Builder//
 				.withName("Final Project")//
 				.andStartDate(LocalDate.of(2015, 3, 29)).build();
+	}
+	
+	@Test
+	public void testAssignmentDueToday() {
+		Assignment dueToday = Assignment.Builder//
+				.withName("Due today")
+				.andDueDate(LocalDate.of(2015, 1, 1))
+				.andStartDate(LocalDate.of(2014, 12, 1))
+				.build();
+		String dueDateString = dueToday.generateRelativeDateString(testToday);
+		Assert.assertEquals("Due today!", dueDateString);
+	}
+	
+	@Test
+	public void testAssignmentOverdue() {
+		Assignment overdue = Assignment.Builder//
+				.withName("Overdue")//
+				.andDueDate(LocalDate.of(2014, 12, 31))
+				.andStartDate(LocalDate.of(2014, 12, 1))
+				.build();
+		String dueDateString = overdue.generateRelativeDateString(testToday);
+		Assert.assertEquals("1 day overdue.", dueDateString);
+	}
+	
+	@Test
+	public void testUpcomingAssignment() {
+		Assignment upcoming = Assignment.Builder//
+				.withName("Upcoming")//
+				.andDueDate(LocalDate.of(2015, 1, 2))//
+				.andStartDate(LocalDate.of(2014, 12, 1))//
+				.build();
+		String dueDateString = upcoming.generateRelativeDateString(testToday);
+		Assert.assertEquals("Due in 1 day.", dueDateString);
 	}
 
 }
