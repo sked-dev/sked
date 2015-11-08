@@ -5,12 +5,15 @@ import java.util.List;
 import edu.bsu.sked.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-public class AssignmentViewPane extends NavigationTargetPane {
+public class AssignmentViewPane implements NavigationTarget {
 	
 	private final Image icon;
 	private static final String ASSIGNMENTS = "Assignments";
@@ -19,13 +22,12 @@ public class AssignmentViewPane extends NavigationTargetPane {
 	public AssignmentViewPane() {
 		super();
 		icon = configureIcon();
-		this.getChildren().add(pane);
 		setUpPane();
 	}
 	
 	private Image configureIcon() {
 		try {
-			return getImageFromAssetName("assignmentIcon.png");
+			return Assets.getImageFromAssetName("assignmentIcon.png");
 		} catch (Exception e) {
 			return null; 
 		}
@@ -40,10 +42,20 @@ public class AssignmentViewPane extends NavigationTargetPane {
 	private void setUpAssignmentGrid() {
 		List<Assignment> assignments = SkedApplication.getSkedData().getAssignments();
 		AssignmentListGrid list = new AssignmentListGrid(assignments);
+		ScrollPane listWrapper = wrapInScrollPane(list);
 		list.setMinSize(120, 120);
-		list.setPrefSize(550, 300);
 		list.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		pane.setCenter(list);
+		pane.setCenter(listWrapper);
+	}
+
+	private ScrollPane wrapInScrollPane(Node node) {
+		ScrollPane pane = new ScrollPane();
+		pane.setContent(node);
+		pane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		//pane.setFitToHeight(true);
+		pane.setHbarPolicy(ScrollBarPolicy.NEVER);
+		pane.setFitToWidth(true);
+		return pane;
 	}
 
 	private void addActionButtons() {
@@ -69,6 +81,11 @@ public class AssignmentViewPane extends NavigationTargetPane {
 	@Override
 	public String getLabel() {
 		return ASSIGNMENTS;
+	}
+	
+	@Override
+	public BorderPane getNode() {
+		return pane;
 	}
 
 }
