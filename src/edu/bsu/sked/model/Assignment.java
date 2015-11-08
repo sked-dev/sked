@@ -117,4 +117,31 @@ public class Assignment {
 	public ArrayList<Subtask> getSubtasks() {
 		return subtasks;
 	}
+	
+	public int getWeightedDifficulty() {
+		int weightedDifficulty = 0;
+		for (Subtask task : subtasks) {
+			weightedDifficulty += task.getDifficulty().getWeight();
+		}
+		return weightedDifficulty;
+	}
+	
+	public int getWeightedCompletion() {
+		int weightedCompletion = 0;
+		for (Subtask task : subtasks) {
+			weightedCompletion += getCompletionWeight(task);
+		}
+		return weightedCompletion;
+	}
+
+	private int getCompletionWeight(Subtask task) {
+		return task.getCompletion() ? task.getDifficulty().getWeight() : 0;
+	}
+	
+	public double getCompletionPercent() {
+		if (getWeightedDifficulty() == 0) {
+			return 0;
+		}
+		else return (double) getWeightedCompletion() / (double) getWeightedDifficulty();
+	}
 }

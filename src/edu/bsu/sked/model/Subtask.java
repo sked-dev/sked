@@ -40,7 +40,17 @@ public class Subtask {
 	}
 	
 	public enum Difficulty {
-		EASY, NORMAL, DIFFICULT
+		EASY(1), NORMAL(2), DIFFICULT(4);
+		
+		private int weight;
+		
+		Difficulty(int weight) {
+			this.weight = weight;
+		}
+		
+		public int getWeight() {
+			return weight;
+		}
 	}
 
 	private String description;
