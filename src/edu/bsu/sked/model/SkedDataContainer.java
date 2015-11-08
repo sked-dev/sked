@@ -1,23 +1,25 @@
 package edu.bsu.sked.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
-public class SkedData {
+public class SkedDataContainer {
 	
-	private final AssignmentList assignments;
+	private final ArrayList<Assignment> assignments;
 	private final UUID uuid;
 	private final UserName name;
 	
 	public static class Builder {
-		private AssignmentList assignments = new AssignmentList();
+		private ArrayList<Assignment> assignments = new ArrayList<>();
 		private UserName name = UserName.unidentifiedUser();
 		
 		public static Builder getBuilder() {
 			return new Builder();
 		}
 		
-		public Builder withAssignmentList(AssignmentList assignments) {
-			this.assignments = assignments;
+		public Builder withAssignmentList(List<Assignment> assignments) {
+			this.assignments = new ArrayList<Assignment>(assignments);
 			return this;
 		}
 		
@@ -26,29 +28,29 @@ public class SkedData {
 			return this;
 		}
 		
-		public SkedData build() {
-			return new SkedData(this);
+		public SkedDataContainer build() {
+			return new SkedDataContainer(this);
 		}
 	}
 	
-	private SkedData(Builder b) {
+	private SkedDataContainer(Builder b) {
 		assignments = b.assignments;
 		name = b.name;
 		
 		uuid = UUID.randomUUID();
 	}
 
-	public static SkedData initialize() {
-		return new SkedData();
+	public static SkedDataContainer initialize() {
+		return new SkedDataContainer();
 	}
 	
-	private SkedData() {
-		assignments = new AssignmentList();
+	private SkedDataContainer() {
+		assignments = new ArrayList<Assignment>();
 		uuid = UUID.randomUUID();
 		name = UserName.unidentifiedUser();
 	}
 	
-	public AssignmentList getAssignments() {
+	public ArrayList<Assignment> getAssignments() {
 		return assignments;
 	}
 

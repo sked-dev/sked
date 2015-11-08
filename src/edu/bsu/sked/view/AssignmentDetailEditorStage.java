@@ -126,19 +126,28 @@ public class AssignmentDetailEditorStage extends Stage {
 		Alert fieldsAlert = new Alert(AlertType.WARNING);
 		fieldsAlert.setTitle("Invalid entries");
 		fieldsAlert.setHeaderText(null);
-		if (invalidFields.size() == 1) {
-			fieldsAlert.setContentText("Please check the value in " + invalidFields.get(0));
-		} else {
-			String text = "Please check the values in ";
-			for (int i = 0; i < invalidFields.size() - 1; i++) {
-				text += invalidFields.get(i) + ", ";
-			}
-			text += "and " + invalidFields.get(invalidFields.size() - 1) + ".";
-			fieldsAlert.setContentText(text);
-		}
+		fieldsAlert.setContentText(generateContentTextFromFields(invalidFields));
 		fieldsAlert.showAndWait();
 	}
 	
+	private String generateContentTextFromFields(ArrayList<String> invalidFields) {
+		if (invalidFields.size() == 1) {
+			return "Please check the value in " + invalidFields.get(0);
+		} else {
+			String text = "Please check the values in " + generateStringList(invalidFields) + ".";
+			return text;
+		}
+	}
+
+	private String generateStringList(ArrayList<String> invalidFields) {
+		String text = "";
+		for (int i = 0; i < invalidFields.size() - 1; i++) {
+			text += invalidFields.get(i) + ", ";
+		}
+		text += "and " + invalidFields.get(invalidFields.size() - 1);
+		return text;
+	}
+
 	private void write() {
 		if (assignment == null) {
 			Assignment newAssignment = getAssignmentFromData();

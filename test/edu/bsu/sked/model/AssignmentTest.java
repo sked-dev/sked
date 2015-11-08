@@ -4,47 +4,79 @@ import java.time.LocalDate;
 
 import org.junit.*;
 
-import edu.bsu.sked.model.*;
-
 public class AssignmentTest {
 	private Assignment finalProject = Assignment.Builder//
 			.withName("Final Project")//
 			.andDueDate(LocalDate.of(2015, 12, 31))//
 			.andStartDate(LocalDate.of(2014, 3, 29))//
 			.build();
+	
+	private LocalDate testToday = LocalDate.of(2015, 1, 1);
 
 	@Test
-	public void AssignmentNameIsFinalProject() {
+	public void testAssignmentNameIsFinalProject() {
 		String name = finalProject.getName();
 		Assert.assertEquals(name, "Final Project");
 	}
 
 	@Test
-	public void AssignmentDueDateIs31Dec2015() {
+	public void testAssignmentDueDateIs31Dec2015() {
 		LocalDate testDate = LocalDate.of(2015, 12, 31);
 		Assert.assertEquals(testDate, finalProject.getDueDate());
 	}
 
 	@Test
-	public void AssignmentStartDateIs29Feb2160() {
+	public void testAssignmentStartDateIs29Feb2160() {
 		LocalDate testDate = LocalDate.of(2014, 3, 29);
 		Assert.assertEquals(testDate, finalProject.getStartDate());
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void builderWithUnsetNameThrowsIllegalStateException() {
+	public void testBuilderWithUnsetNameThrowsIllegalStateException() {
 		Assignment.Builder b = new Assignment.Builder();
 		b.andDueDate(LocalDate.of(2015, 12, 31))//
-		.andStartDate(LocalDate.of(2015, 3, 29))//
-		.build();
+				.andStartDate(LocalDate.of(2015, 3, 29))//
+				.build();
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void testBuilderWithUnsetDueDateThrowsIllegalStateException() {
+		Assignment.Builder//
+				.withName("Final Project")//
+				.andStartDate(LocalDate.of(2015, 3, 29)).build();
 	}
 	
-	@Test(expected = IllegalStateException.class)
-	public void builderWithUnsetDueDateThrowsIllegalStateException() {
-		Assignment.Builder//
-		.withName("Final Project")//
-		.andStartDate(LocalDate.of(2015, 3, 29))
-		.build();
+	@Test
+	public void testAssignmentDueToday() {
+		Assignment dueToday = Assignment.Builder//
+				.withName("Due today")
+				.andDueDate(LocalDate.of(2015, 1, 1))
+				.andStartDate(LocalDate.of(2014, 12, 1))
+				.build();
+		String dueDateString = dueToday.generateRelativeDateString(testToday);
+		Assert.assertEquals("Due today!", dueDateString);
+	}
+	
+	@Test
+	public void testAssignmentOverdue() {
+		Assignment overdue = Assignment.Builder//
+				.withName("Overdue")//
+				.andDueDate(LocalDate.of(2014, 12, 31))
+				.andStartDate(LocalDate.of(2014, 12, 1))
+				.build();
+		String dueDateString = overdue.generateRelativeDateString(testToday);
+		Assert.assertEquals("1 day overdue.", dueDateString);
+	}
+	
+	@Test
+	public void testUpcomingAssignment() {
+		Assignment upcoming = Assignment.Builder//
+				.withName("Upcoming")//
+				.andDueDate(LocalDate.of(2015, 1, 2))//
+				.andStartDate(LocalDate.of(2014, 12, 1))//
+				.build();
+		String dueDateString = upcoming.generateRelativeDateString(testToday);
+		Assert.assertEquals("Due in 1 day.", dueDateString);
 	}
 
 }

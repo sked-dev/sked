@@ -17,7 +17,7 @@ public class SkedDataFile {
 			+ File.separator + "sked.json");
 	}
 
-	public SkedData load() throws SkedDataReadFailedException {
+	public SkedDataContainer load() throws SkedDataReadFailedException {
 		if (!exists()) {
 			return safelyInitialize();
 		}
@@ -38,7 +38,7 @@ public class SkedDataFile {
 		return new File(path);
 	}
 	
-	private SkedData safelyInitialize() throws SkedDataReadFailedException {
+	private SkedDataContainer safelyInitialize() throws SkedDataReadFailedException {
 		try {
 			return initialize();
 		} catch (SkedDataWriteFailedException e) {
@@ -46,13 +46,13 @@ public class SkedDataFile {
 		}
 	}
 
-	private SkedData initialize() throws SkedDataWriteFailedException {
-		SkedData data = SkedData.initialize();
+	private SkedDataContainer initialize() throws SkedDataWriteFailedException {
+		SkedDataContainer data = SkedDataContainer.initialize();
 		write(data);
 		return data;
 	}
 	
-	public void write(SkedData data) throws SkedDataWriteFailedException {
+	public void write(SkedDataContainer data) throws SkedDataWriteFailedException {
 		try {
 			new SkedDataFileWriter(this).write(data);
 		} catch (IOException e) {
