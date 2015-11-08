@@ -52,7 +52,6 @@ public class AssignmentViewPane implements NavigationTarget {
 		ScrollPane pane = new ScrollPane();
 		pane.setContent(node);
 		pane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		//pane.setFitToHeight(true);
 		pane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		pane.setFitToWidth(true);
 		return pane;
