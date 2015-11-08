@@ -1,6 +1,7 @@
 package edu.bsu.sked.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class Assignment {
 	private String name;
 	private LocalDate dueDate;
 	private LocalDate startDate;
-	private final ArrayList<Subtask> subtasks;
+	private ArrayList<Subtask> subtasks;
 
 	private Assignment(Builder assignmentBuilder) {
 		name = assignmentBuilder.name;
@@ -78,6 +79,23 @@ public class Assignment {
 
 	public LocalDate getDueDate() {
 		return dueDate;
+	}
+	
+	public String getRelativeDueDate() {
+		LocalDate today = LocalDate.now();
+		return generateRelativeDateString(today);
+	}
+
+	String generateRelativeDateString(LocalDate today) {
+		Period period = today.until(dueDate);
+		PeriodStringGenerator generator = new PeriodStringGenerator(period);
+		if (period.isZero()) {
+			return "Due today!";
+		} else if (period.isNegative()) {
+			return generator.getPeriodString() + " overdue.";
+		} else {
+			return "Due in " + generator.getPeriodString() + ".";
+		}
 	}
 	
 	public void setDueDate(LocalDate date) {

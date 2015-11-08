@@ -13,7 +13,7 @@ public class SkedDataFileWriter {
 		this.file = file;
 	}
 	
-	public void write(SkedData data) throws IOException {
+	public void write(SkedDataContainer data) throws IOException {
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(data);
 		file.delete(); // TODO: Is there a safer way to do this?

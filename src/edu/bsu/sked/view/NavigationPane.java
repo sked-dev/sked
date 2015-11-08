@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 
 public class NavigationPane extends BorderPane {
 
 	private static final double BUTTON_SIZE = 100;
 	private NavigationButtonsBox navigationButtons;
-	private HashMap<NavigationButton, Pane> availablePanes = new HashMap<NavigationButton, Pane>();
+	private HashMap<NavigationButton, Node> availablePanes = new HashMap<NavigationButton, Node>();
 
 	private NavigationPane() {
 		super();
@@ -40,11 +40,11 @@ public class NavigationPane extends BorderPane {
 		add(new OptionViewPane());
 	}
 
-	public void add(NavigationTargetPane pane) {
+	public void add(NavigationTarget pane) {
 		NavigationButton button = new NavigationButton(pane.getLabel(), pane.getIcon());
 		navigationButtons.add(button);
 		navigationButtons.setMaxWidth(BUTTON_SIZE);
-		availablePanes.put(button, pane);
+		availablePanes.put(button, pane.getNode());
 	}
 
 	public void navigateToDefault() {

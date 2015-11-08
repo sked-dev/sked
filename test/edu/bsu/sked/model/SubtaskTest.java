@@ -28,14 +28,14 @@ public class SubtaskTest {
 			.andDifficulty(Difficulty.DIFFICULT).build();
 
 	@Test
-	public void descriptionIsEdited() {
+	public void testDescriptionIsEdited() {
 		subtask1.editDescription("Write edit description test");
 		String description = subtask1.getDescription();
 		Assert.assertEquals(description, "Write edit description test");
 	}
 
 	@Test
-	public void descriptionIsCorrect() {
+	public void testDescriptionIsCorrect() {
 		String description = subtask2.getDescription();
 		Assert.assertEquals(description, "Write a subtask class");
 	}
@@ -57,34 +57,34 @@ public class SubtaskTest {
 	}
 
 	@Test
-	public void completionIsTrue() {
+	public void testCompletionIsTrue() {
 		subtask3.setCompletion(true);
 		boolean completion = subtask3.isComplete();
 		Assert.assertEquals(completion, true);
 	}
 	
 	@Test
-	public void getCompletionWorks() {
+	public void testGetCompletionWorks() {
 		boolean completion = subtask1.getCompletion();
-		Assert.assertEquals(completion, false);
+		Assert.assertFalse(completion);
 	}
 	
 	@Test
-	public void comparisonWorks1() {
+	public void testComparisonWorks1() {
 		boolean equal = subtask1.equals(subtask2);
-		Assert.assertEquals(equal, false);
+		Assert.assertFalse(equal);
 	}
 	
 	@Ignore("Lack of independence is causing this test to fail.  Will be fixed in refactoring.")
 	@Test
-	public void comparisonWorks2() {
+	public void testComparisonWorks2() {
 		boolean equal = subtask1.equals(subtask5);
-		Assert.assertEquals(equal, true);
+		Assert.assertTrue(equal);
 	}
 	
 	@Test
-	public void comparisonWorks3() {
+	public void testComparisonWorks3() {
 		boolean equal = subtask1.equals(subtask4);
-		Assert.assertEquals(equal, false);
+		Assert.assertFalse(equal);
 	}
 }

@@ -21,10 +21,10 @@ public class SkedDataFileReader {
 		file = skedFile;
 	}
 
-	public SkedData read() throws FileNotFoundException {
+	public SkedDataContainer read() throws FileNotFoundException {
 		FileReader jsonFileReader = makeFileReader();
 		Gson gson = new Gson();
-		return gson.fromJson(jsonFileReader, SkedData.class);
+		return gson.fromJson(jsonFileReader, SkedDataContainer.class);
 	}
 
 	private FileReader makeFileReader() throws FileNotFoundException {
