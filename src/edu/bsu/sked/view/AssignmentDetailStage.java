@@ -2,13 +2,17 @@ package edu.bsu.sked.view;
 
 import edu.bsu.sked.model.*;
 import edu.bsu.sked.view.AssignmentDetailController.Mode;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class AssignmentDetailStage extends Stage {
 	
+	private Parent pane;
+	private AssignmentDetailController controller;
 	
 	public static void newAssignment() {
 		AssignmentDetailController controller = new AssignmentDetailController(null, Mode.CREATE);
@@ -23,8 +27,11 @@ public class AssignmentDetailStage extends Stage {
 	}
 	
 	private AssignmentDetailStage(AssignmentDetailController controller) {
-		Parent pane = getFXMLPane(controller);
+		this.controller = controller;
+		pane = getFXMLPane(controller);
 		setScene(new Scene(pane));
+		controller.setParent(this);
+		configureStage();
 	}
 	
 	private Parent getFXMLPane(AssignmentDetailController controller) {
@@ -36,6 +43,18 @@ public class AssignmentDetailStage extends Stage {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	private void configureStage() {
+		setTitle("Assignment details");
+		setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+			@Override
+			public void handle(WindowEvent windowEvent) {
+				controller.handleClose(windowEvent);
+			}
+			
+		});
 	}
 	
 }
