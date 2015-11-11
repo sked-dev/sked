@@ -36,8 +36,7 @@ public class AssignmentOverview extends GridPane {
 
 			@Override
 			public void handle(ActionEvent event) {
-				AssignmentDetailEditorStage editor = new AssignmentDetailEditorStage(assignment);
-				editor.showAndWait();
+				AssignmentDetailStage.edit(assignment);
 				getValues();
 			}
 			

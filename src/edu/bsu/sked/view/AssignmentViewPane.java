@@ -64,7 +64,7 @@ public class AssignmentViewPane implements NavigationTarget {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				AssignmentDetailEditorStage.newAssignment();
+				AssignmentDetailStage.newAssignment();
 				setUpAssignmentGrid();
 			}
 		});
