@@ -170,16 +170,29 @@ public class AssignmentDetailController implements Initializable {
 			assignment.setDueDate(assignmentDueDateField.getValue());
 			//TODO assignment.setSubtasks(subtasks.getSubtasks());
 		}
+		try {
+			SkedApplication.saveSkedData();
+		} catch (SkedDataWriteFailedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		close();
 	}
 
 	private boolean validate() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@FXML
 	public void delete() {
-		// TODO
+		SkedApplication.getSkedData().getAssignments().remove(assignment);
+		try {
+			SkedApplication.saveSkedData();
+		} catch (SkedDataWriteFailedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void setParent(Stage parent) {

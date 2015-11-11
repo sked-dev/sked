@@ -30,7 +30,7 @@
    <bottom>
       <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="5.0" style="-fx-background-color: #DDDDDD;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="saveButton" defaultButton="true" text="Save" />
+            <Button fx:id="saveButton" defaultButton="true" text="Save" onAction="#save" />
             <Button fx:id="revertButton" text="Revert" />
             <Button fx:id="editButton" text="Edit" />
             <Button fx:id="closeButton" cancelButton="true" text="Close" onAction="#close" />

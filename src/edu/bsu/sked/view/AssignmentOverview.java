@@ -38,12 +38,16 @@ public class AssignmentOverview extends GridPane {
 			@Override
 			public void handle(ActionEvent event) {
 				AssignmentDetailStage.edit(assignment);
-				getValues();
+				getViewPane().refresh();
 			}
 			
 		});
 		return editLink;
 		
+	}
+
+	private AssignmentViewPane getViewPane() {
+		return (AssignmentViewPane) this.getParent().getParent().getParent().getParent().getParent(); //TODO: Can this be cleaned up?
 	}
 	
 }
