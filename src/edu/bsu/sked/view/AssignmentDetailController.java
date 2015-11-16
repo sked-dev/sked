@@ -189,6 +189,7 @@ public class AssignmentDetailController implements Initializable {
 		SkedApplication.getSkedData().getAssignments().remove(assignment);
 		try {
 			SkedApplication.saveSkedData();
+			deleteRequest();
 			close();
 		} catch (SkedDataWriteFailedException e) {
 			// TODO Auto-generated catch block
@@ -196,6 +197,10 @@ public class AssignmentDetailController implements Initializable {
 		}
 	}
 	
+	private void deleteRequest() {
+		// TODO: A request to confirm the deletion of the assignment and all of its tasks
+	}
+
 	public void setParent(Stage parent) {
 		this.parent = parent;
 	}
