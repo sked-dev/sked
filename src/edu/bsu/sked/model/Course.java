@@ -1,11 +1,11 @@
 package edu.bsu.sked.model;
 
-public class AssignmentClass {
+public class Course {
 	
 	private String name;
 	private boolean prioritized = false;
 	
-	public AssignmentClass(String name) {
+	public Course(String name) {
 		this.name = validateName(name);
 	}
 

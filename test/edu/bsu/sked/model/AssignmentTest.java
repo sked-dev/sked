@@ -11,8 +11,8 @@ public class AssignmentTest {
 			.andStartDate(LocalDate.of(2014, 3, 29))//
 			.build();
 	private Assignment clasHomework;
-	private AssignmentClass clas101 = new AssignmentClass("CLAS 101");
-	private AssignmentClass clas202 = new AssignmentClass("CLAS 202");
+	private Course clas101 = new Course("CLAS 101");
+	private Course clas202 = new Course("CLAS 202");
 	
 	private LocalDate testToday = LocalDate.of(2015, 1, 1);
 	
@@ -22,7 +22,7 @@ public class AssignmentTest {
 				.withName("CLAS homework")//
 				.andDueDate(LocalDate.of(2015, 12, 31))//
 				.andStartDate(LocalDate.of(2014, 3, 29))//
-				.andAssignmentClass(clas101)//
+				.andCourse(clas101)//
 				.build();
 	}
 
@@ -93,21 +93,21 @@ public class AssignmentTest {
 	}
 	
 	@Test
-	public void testAssignmentHasNoClass() {
-		Assert.assertNull(finalProject.getAssignmentClass());
-		Assert.assertFalse(finalProject.hasAssignmentClass());
+	public void testAssignmentHasNoCourse() {
+		Assert.assertNull(finalProject.getCourse());
+		Assert.assertFalse(finalProject.hasCourse());
 	}
 	
 	@Test
-	public void testAssignmentClassIsClas101() {
-		Assert.assertTrue(clasHomework.hasAssignmentClass());
-		Assert.assertEquals(clasHomework.getAssignmentClass(), clas101);
+	public void testCourseIsClas101() {
+		Assert.assertTrue(clasHomework.hasCourse());
+		Assert.assertEquals(clasHomework.getCourse(), clas101);
 	}
 	
 	@Test
-	public void testAssignmentClassBecomesClas202() {
-		clasHomework.setAssignmentClass(clas202);
-		Assert.assertEquals(clasHomework.getAssignmentClass(), clas202);
+	public void testCourseBecomesClas202() {
+		clasHomework.setCourse(clas202);
+		Assert.assertEquals(clasHomework.getCourse(), clas202);
 	}
 
 }
