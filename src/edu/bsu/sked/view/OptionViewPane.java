@@ -1,5 +1,7 @@
 package edu.bsu.sked.view;
 
+import edu.bsu.sked.model.UserName;
+import edu.bsu.sked.model.UserName.Builder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -12,8 +14,10 @@ public class OptionViewPane implements NavigationTarget {
 	private final Image icon;
 	private static final String OPTIONS = "Options";
 	private final GridPane pane = new GridPane();
-	TextField username = new TextField();
-	Label usernameLabel = new Label();
+	TextField firstName = new TextField();
+	TextField lastName = new TextField();
+	Label firstNameLabel = new Label();
+	Label lastNameLabel = new Label();
 	
 	public OptionViewPane(){
 		super();
@@ -31,30 +35,41 @@ public class OptionViewPane implements NavigationTarget {
 	
 	private void setUpPane() {
 		Button loginButton = new Button();
-		loginButton.setText("Login");
-		usernameLabel.setText("Username: ");
-		pane.add(usernameLabel, 1, 0);
-		pane.add(username, 2,0);
+		loginButton.setText("Save");
+		firstNameLabel.setText("First Name:");
+		lastNameLabel.setText("Last Name:");
+		pane.add(firstNameLabel, 1, 0);
+		pane.add(firstName, 2,0);
+		pane.add(lastNameLabel, 1,1);
+		pane.add(lastName, 2,1);
 		pane.add(loginButton, 3, 0);
 		loginButton.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent event) {
-				Label user = new Label();
+				new Builder()
+;
+				
+				Label name = new Label();
+				UserName userName = new UserName(new Builder());
+				userName.setFirstName(firstName.getText());
+				userName.setLastName(lastName.getText());
 				Button logoutButton = new Button();
-				pane.add(user, 0, 0);
-				user.setText(getUsername());
-				pane.getChildren().remove(username);
-				pane.getChildren().remove(usernameLabel);
+				pane.add(name, 0, 0);
+				name.setText(getFullUserName(userName));
+				pane.getChildren().remove(firstName);
+				pane.getChildren().remove(lastName);
+				pane.getChildren().remove(lastNameLabel);
+				pane.getChildren().remove(firstNameLabel);
 				pane.getChildren().remove(loginButton);
-				logoutButton.setText("Logout");
-				pane.add(logoutButton, 1, 0);
+				logoutButton.setText("Edit");
+				pane.add(logoutButton, 1, 2);
 				logoutButton.setOnAction(new EventHandler<ActionEvent>(){
 
 					@Override
 					public void handle(ActionEvent event) {
 						pane.getChildren().remove(logoutButton);
-						pane.getChildren().remove(user);
+						pane.getChildren().remove(name);
 						setUpPane();
 						
 					}
@@ -85,13 +100,11 @@ public class OptionViewPane implements NavigationTarget {
 		return pane;
 	}
 
-	public String getUsername(){
-		if(username.getText() == ""){
-			return "Not Logged in";
+	private String getFullUserName(UserName userName){
+		if(firstName.getText().isEmpty() && lastName.getText().isEmpty()){
+			return userName.getFullName();
 		}else{
-			return ("Logged in as:" + username.getText());
-
+			return "Unidentified user";
 		}
 	}
-
 }

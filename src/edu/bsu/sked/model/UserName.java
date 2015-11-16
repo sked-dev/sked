@@ -5,7 +5,7 @@ public class UserName {
 	private String firstName;
 	private String lastName;
 	
-	private UserName(Builder b) {
+	public UserName(Builder b) {
 		firstName = b.firstName;
 		lastName = b.lastName;
 	}
