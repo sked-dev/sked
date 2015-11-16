@@ -189,6 +189,7 @@ public class AssignmentDetailController implements Initializable {
 		SkedApplication.getSkedData().getAssignments().remove(assignment);
 		try {
 			SkedApplication.saveSkedData();
+			close();
 		} catch (SkedDataWriteFailedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
