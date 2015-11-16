@@ -1,5 +1,6 @@
 package edu.bsu.sked.view;
 
+import edu.bsu.sked.model.SkedDataWriteFailedException;
 import edu.bsu.sked.model.UserName;
 import edu.bsu.sked.model.UserName.Builder;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ public class OptionViewPane implements NavigationTarget {
 	private final GridPane pane = new GridPane();
 	TextField firstName = new TextField();
 	TextField lastName = new TextField();
+	UserName userName = SkedApplication.getSkedData().getName();
 	Label firstNameLabel = new Label();
 	Label lastNameLabel = new Label();
 	
@@ -38,6 +40,8 @@ public class OptionViewPane implements NavigationTarget {
 		loginButton.setText("Save");
 		firstNameLabel.setText("First Name:");
 		lastNameLabel.setText("Last Name:");
+		firstName.setText(userName.getFirstName());
+		lastName.setText(userName.getLastName());
 		pane.add(firstNameLabel, 1, 0);
 		pane.add(firstName, 2,0);
 		pane.add(lastNameLabel, 1,1);
@@ -46,17 +50,18 @@ public class OptionViewPane implements NavigationTarget {
 		loginButton.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
-			public void handle(ActionEvent event) {
-				new Builder()
-;
-				
+			public void handle(ActionEvent event) {			
 				Label name = new Label();
-				UserName userName = new UserName(new Builder());
 				userName.setFirstName(firstName.getText());
 				userName.setLastName(lastName.getText());
+				try {
+					SkedApplication.saveSkedData();
+				} catch (SkedDataWriteFailedException e) {
+					e.printStackTrace();
+				}
 				Button logoutButton = new Button();
 				pane.add(name, 0, 0);
-				name.setText(getFullUserName(userName));
+				name.setText(userName.getFullName());
 				pane.getChildren().remove(firstName);
 				pane.getChildren().remove(lastName);
 				pane.getChildren().remove(lastNameLabel);
@@ -100,11 +105,5 @@ public class OptionViewPane implements NavigationTarget {
 		return pane;
 	}
 
-	private String getFullUserName(UserName userName){
-		if(firstName.getText().isEmpty() && lastName.getText().isEmpty()){
-			return userName.getFullName();
-		}else{
-			return "Unidentified user";
-		}
-	}
+
 }
