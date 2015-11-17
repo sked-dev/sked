@@ -13,8 +13,7 @@ public class SkedDataFile {
 	}
 	
 	public SkedDataFile() {
-		this(System.getProperty("user.home", "") 
-			+ File.separator + "sked.json");
+		this("sked.json");
 	}
 
 	public SkedDataContainer load() throws SkedDataReadFailedException {
