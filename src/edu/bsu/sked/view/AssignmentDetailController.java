@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.bsu.sked.model.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -48,6 +50,17 @@ public class AssignmentDetailController implements Initializable {
 	private void fillContent() {
 		setTitle();
 		fillAssignmentDetails();
+		setSubtaskBox();
+	}
+
+	private void setSubtaskBox() {
+		/*if (assignment == null) {
+		subtasks = new SubtaskBox(Assignment.Builder.emptyAssignment());
+		}
+		else {
+		subtasks = new SubtaskBox(assignment);	
+		}*/
+		subtasks = new SubtaskBox(assignment);
 	}
 
 	private void configureMode() {
@@ -88,7 +101,7 @@ public class AssignmentDetailController implements Initializable {
 		assignmentNameField.setEditable(editable);
 		assignmentStartDateField.setEditable(editable);
 		assignmentDueDateField.setEditable(editable);
-		// TODO: subtasks.setEditable(editable);
+		//subtasks.setEditable(editable);
 	}
 
 	private void configureViewButtons() {
