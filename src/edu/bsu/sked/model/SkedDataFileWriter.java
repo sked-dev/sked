@@ -16,7 +16,6 @@ public class SkedDataFileWriter {
 	public void write(SkedDataContainer data) throws IOException {
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(data);
-		file.delete(); // TODO: Is there a safer way to do this?
 		writeToFile(jsonString);
 	}
 	
