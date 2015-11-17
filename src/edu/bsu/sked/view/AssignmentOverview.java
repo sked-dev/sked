@@ -4,6 +4,7 @@ import edu.bsu.sked.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -23,9 +24,12 @@ public class AssignmentOverview extends GridPane {
 		this.add(assignmentName, 0, 0, 1, 1);
 		this.add(assignmentDueDate, 0, 1);
 		this.add(getEditHyperlink(), 0, 2);
-		//this.setPrefWidth(300);
+		this.setPrefWidth(300);
+		
 	}
 	
+
+
 	private void getValues() {
 		assignmentName.setText(assignment.getName());
 		assignmentDueDate.setText(assignment.getRelativeDueDate());

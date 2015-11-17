@@ -2,7 +2,6 @@ package edu.bsu.sked.view;
 
 import edu.bsu.sked.model.SkedDataWriteFailedException;
 import edu.bsu.sked.model.UserName;
-import edu.bsu.sked.model.UserName.Builder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -36,16 +35,17 @@ public class OptionViewPane implements NavigationTarget {
 	}
 	
 	private void setUpPane() {
+		setUpPaneElements();
+	}
+	
+	private void setUpPaneElements() {
+		createLabels();
+		createSignInButton();
+	}
+
+	private void createSignInButton() {
 		Button loginButton = new Button();
 		loginButton.setText("Save");
-		firstNameLabel.setText("First Name:");
-		lastNameLabel.setText("Last Name:");
-		firstName.setText(userName.getFirstName());
-		lastName.setText(userName.getLastName());
-		pane.add(firstNameLabel, 1, 0);
-		pane.add(firstName, 2,0);
-		pane.add(lastNameLabel, 1,1);
-		pane.add(lastName, 2,1);
 		pane.add(loginButton, 3, 0);
 		loginButton.setOnAction(new EventHandler<ActionEvent>(){
 
@@ -59,7 +59,6 @@ public class OptionViewPane implements NavigationTarget {
 				} catch (SkedDataWriteFailedException e) {
 					e.printStackTrace();
 				}
-				Button logoutButton = new Button();
 				pane.add(name, 0, 0);
 				name.setText(userName.getFullName());
 				pane.getChildren().remove(firstName);
@@ -67,29 +66,43 @@ public class OptionViewPane implements NavigationTarget {
 				pane.getChildren().remove(lastNameLabel);
 				pane.getChildren().remove(firstNameLabel);
 				pane.getChildren().remove(loginButton);
-				logoutButton.setText("Edit");
-				pane.add(logoutButton, 1, 2);
-				logoutButton.setOnAction(new EventHandler<ActionEvent>(){
-
-					@Override
-					public void handle(ActionEvent event) {
-						pane.getChildren().remove(logoutButton);
-						pane.getChildren().remove(name);
-						setUpPane();
-						
-					}
-					
-				});
-			
+				createSignOutButton(name);
 				
 			}
 			
 		});
 		
-		
+	}
+
+	private void createSignOutButton(Label name) {
+		Button logoutButton = new Button();
+		logoutButton.setText("Edit");
+		pane.add(logoutButton, 1, 2);
+		logoutButton.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				pane.getChildren().remove(logoutButton);
+				pane.getChildren().remove(name);
+				setUpPane();
+				
+			}
+			
+		});
 		
 	}
-	
+
+	private void createLabels() {
+		firstNameLabel.setText("First Name:");
+		lastNameLabel.setText("Last Name:");
+		firstName.setText(userName.getFirstName());
+		lastName.setText(userName.getLastName());
+		pane.add(firstNameLabel, 1, 0);
+		pane.add(firstName, 2,0);
+		pane.add(lastNameLabel, 1,1);
+		pane.add(lastName, 2,1);
+	}
+
 	@Override
 	public Image getIcon() {
 		return icon;
