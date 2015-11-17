@@ -29,4 +29,18 @@ public class CourseTest {
 		Assert.assertTrue(hardClass.isPrioritized());
 	}
 	
+	@Test
+	public void testClassBecomesEd299() {
+		Course course = new Course("ED 200");
+		course.setName("ED 299X");
+		String courseName = course.getName();
+		Assert.assertEquals("ED 299X", courseName);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testEmptyRenameThrowsIllegalArgumentException() {
+		Course course = new Course("CLAS 101");
+		course.setName("");
+	}
+	
 }

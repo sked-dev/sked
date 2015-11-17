@@ -37,6 +37,7 @@ public class NavigationPane extends BorderPane {
 
 	private void addDefaults() {
 		add(new AssignmentViewPane());
+		add(new CourseViewPane());
 		add(new OptionViewPane());
 	}
 
