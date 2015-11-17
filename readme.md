@@ -6,9 +6,10 @@
 
 ## Who made this?
 
-![Garrett Evers](https://avatars1.githubusercontent.com/u/13851785?s=96) | ![Brody Bryant](https://avatars0.githubusercontent.com/u/13963054?s=96) | ![Matheu Dewitt](https://avatars1.githubusercontent.com/u/13967132?s=96) | ![Austin "Paco" DeArmond](https://avatars3.githubusercontent.com/u/10604584?s=96)
----|---|---|---
-Garrett Evers | Brody Bryant | Matheu Dewitt | Austin "Paco" DeArmond
+ * Garrett Evers
+ * Brody Bryant
+ * Matheu Dewitt
+ * Austin "Paco" DeArmond
 
 Managed by Dr. Gestwicki of Ball State University.  This is the final project for the Fall 2015 CS 222 section 1 class.
 
@@ -28,6 +29,6 @@ SKED is still in an early development stage.  v0.1 allows you to:
 
 ### How do I get it?
 
-Make sure Java is up to date on your machine.  SKED is currently built on Java 1.8.
+Make sure Java is up to date on your machine.  SKED is currently built on Java 1.8 using JavaFX.
 
 Next, download and run [the executable](https://github.com/bsu-cs222-fall2015/FP-bnbryant-dearmond-grevers-msdewitt/releases/download/0.1/sked_v0.1.jar).
