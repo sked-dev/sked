@@ -40,8 +40,7 @@ public class AssignmentDetailStage extends Stage {
 			loader.setController(controller);
 			return loader.load();
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw new RuntimeException(e);
 		}
 	}
 	

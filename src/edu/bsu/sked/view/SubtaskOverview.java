@@ -21,20 +21,15 @@ public class SubtaskOverview extends HBox implements Initializable {
 	public enum Mode {
 		VIEW, EDIT
 	}
-	@FXML
-	HBox root;
-	@FXML
-	CheckBox completion;
-	@FXML
-	TextField subtaskDescription;
-	@FXML
-	ComboBox<Subtask.Difficulty> difficultiesDisplay;
-	@FXML
-	Button plus;
-	@FXML
-	Button minus;
-	
-	private Subtask subtask = Subtask.Builder.withDescription("CS222 is cool").build();
+
+	@FXML HBox root;
+	@FXML CheckBox completion;
+	@FXML TextField subtaskDescription;
+	@FXML ComboBox<Subtask.Difficulty> difficultiesDisplay;
+	@FXML Button plus;
+	@FXML Button minus;
+
+	private Subtask subtask;
 	private Parent hbox;
 
 	public SubtaskOverview(Subtask subtask) {
@@ -42,10 +37,10 @@ public class SubtaskOverview extends HBox implements Initializable {
 		this.subtask = subtask;
 		configureFXMLHBox();
 	}
-	
+
 	public SubtaskOverview() {
 		super();
-		 //Subtask.Builder.emptySubtask();
+		subtask = Subtask.emptySubtask();
 		configureFXMLHBox();
 	}
 
@@ -55,12 +50,11 @@ public class SubtaskOverview extends HBox implements Initializable {
 		difficultiesDisplay.getItems().addAll(Difficulty.values());
 		difficultiesDisplay.getSelectionModel().select(Difficulty.NORMAL);
 	}
-	
+
 	@FXML
 	public void selectDificulty() {
 		Difficulty selection = difficultiesDisplay.getSelectionModel().getSelectedItem();
 		subtask.setDifficulty(selection);
-		
 	}
 
 	@FXML

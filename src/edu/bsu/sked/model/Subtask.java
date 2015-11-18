@@ -1,17 +1,17 @@
 package edu.bsu.sked.model;
 
 public class Subtask {
+	
+	public static Subtask emptySubtask() {
+		Builder b = new Builder();
+		b.description = "";
+		return b.build();
+	}
 
 	public static class Builder {
 		private String description = null;
 		private boolean completion = false;
 		private Difficulty difficulty = Difficulty.EASY;
-		
-		public static Subtask emptySubtask() {
-			Builder b = new Builder();
-			b.description = "";
-			return b.build();
-		}
 
 		public static Builder withDescription(String description) {
 			Builder builder = new Builder();

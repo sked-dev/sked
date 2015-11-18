@@ -24,7 +24,7 @@ public class AssignmentDetailController implements Initializable {
 	@FXML private TextField assignmentNameField;
 	@FXML private DatePicker assignmentStartDateField;
 	@FXML private DatePicker assignmentDueDateField;
-	@FXML private SubtaskBox subtasks;
+	@FXML private ScrollPane subtasks;
 	@FXML private Button closeButton;
 	@FXML private Button saveButton;
 	@FXML private Button revertButton;
@@ -54,13 +54,11 @@ public class AssignmentDetailController implements Initializable {
 	}
 
 	private void setSubtaskBox() {
-		/*if (assignment == null) {
-		subtasks = new SubtaskBox(Assignment.Builder.emptyAssignment());
+		if (assignment != null) {
+			subtasks.setContent(new SubtaskListHBox(assignment.getSubtasks()));
+		} else {
+			subtasks.setContent(SubtaskListHBox.create());
 		}
-		else {
-		subtasks = new SubtaskBox(assignment);	
-		}*/
-		subtasks = new SubtaskBox(assignment);
 	}
 
 	private void configureMode() {

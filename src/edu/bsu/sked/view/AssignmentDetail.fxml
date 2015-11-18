@@ -89,11 +89,11 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <SubtaskBox fx:id="subtasks" fitToWidth="true" hbarPolicy="NEVER" prefViewportHeight="75.0" prefViewportWidth="390.0" VBox.vgrow="SOMETIMES">
+            <ScrollPane fx:id="subtasks" fitToWidth="true" hbarPolicy="NEVER" prefViewportHeight="75.0" prefViewportWidth="390.0" VBox.vgrow="SOMETIMES">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
-            </SubtaskBox>
+            </ScrollPane>
          </children>
       </VBox>
    </center>
