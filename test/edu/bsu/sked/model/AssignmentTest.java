@@ -10,8 +10,21 @@ public class AssignmentTest {
 			.andDueDate(LocalDate.of(2015, 12, 31))//
 			.andStartDate(LocalDate.of(2014, 3, 29))//
 			.build();
+	private Assignment clasHomework;
+	private Course clas101 = new Course("CLAS 101");
+	private Course clas202 = new Course("CLAS 202");
 	
 	private LocalDate testToday = LocalDate.of(2015, 1, 1);
+	
+	@Before
+	public void configure() {
+		clasHomework = Assignment.Builder//
+				.withName("CLAS homework")//
+				.andDueDate(LocalDate.of(2015, 12, 31))//
+				.andStartDate(LocalDate.of(2014, 3, 29))//
+				.andCourse(clas101)//
+				.build();
+	}
 
 	@Test
 	public void testAssignmentNameIsFinalProject() {
@@ -77,6 +90,24 @@ public class AssignmentTest {
 				.build();
 		String dueDateString = upcoming.generateRelativeDateString(testToday);
 		Assert.assertEquals("Due in 1 day.", dueDateString);
+	}
+	
+	@Test
+	public void testAssignmentHasNoCourse() {
+		Assert.assertNull(finalProject.getCourse());
+		Assert.assertFalse(finalProject.hasCourse());
+	}
+	
+	@Test
+	public void testCourseIsClas101() {
+		Assert.assertTrue(clasHomework.hasCourse());
+		Assert.assertEquals(clasHomework.getCourse(), clas101);
+	}
+	
+	@Test
+	public void testCourseBecomesClas202() {
+		clasHomework.setCourse(clas202);
+		Assert.assertEquals(clasHomework.getCourse(), clas202);
 	}
 
 }
