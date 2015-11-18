@@ -14,6 +14,7 @@ public class AssignmentOverview extends GridPane {
 	private Assignment assignment;
 	private Label assignmentName = new Label();
 	private Label assignmentDueDate = new Label();
+	private ProgressBar progressBar = new ProgressBar();
 	
 	public AssignmentOverview(Assignment assignment) {
 		super();
@@ -25,7 +26,7 @@ public class AssignmentOverview extends GridPane {
 		this.add(assignmentDueDate, 0, 1);
 		this.add(getEditHyperlink(), 0, 2);
 		this.setPrefWidth(300);
-		
+		this.add(progressBar.buildProgressBar(),0,3);
 	}
 	
 

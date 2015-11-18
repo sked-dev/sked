@@ -1,5 +1,7 @@
 package edu.bsu.sked.view;
 
+import java.util.Map;
+
 import edu.bsu.sked.model.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -8,7 +10,7 @@ import javafx.stage.Stage;
 public class SkedApplication extends Application {
 	
 	private final NavigationPane primaryPane = NavigationPane.configure();
-	private static final SkedDataFile dataFile = new SkedDataFile();
+	private static SkedDataFile dataFile = new SkedDataFile();
 	private static SkedDataContainer data = getData();
 
 	public static void main(String[] args) {
@@ -17,9 +19,17 @@ public class SkedApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		checkParameters();
 		getData();
 		configure(primaryStage);
 		primaryStage.show();
+	}
+	
+	private void checkParameters() {
+		Map<String, String> parameters = getParameters().getNamed();
+		if (parameters.containsKey("file")) {
+			dataFile = new SkedDataFile(parameters.get("file"));
+		}
 	}
 
 	private static SkedDataContainer getData() {
