@@ -3,9 +3,11 @@ package edu.bsu.sked.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.bsu.sked.model.Assignment;
 import edu.bsu.sked.model.Subtask;
 import edu.bsu.sked.model.Subtask.Difficulty;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
