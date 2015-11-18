@@ -1,18 +1,10 @@
 package edu.bsu.sked.view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-
-import javafx.scene.Scene;
-
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
-import javafx.stage.Stage;
 
 public class ProgressBar {
 
@@ -58,7 +50,7 @@ public class ProgressBar {
 		
 
 	}
-	private void refreshProgress(){
+	public void refreshProgress(){
 		if(maxWidthCheck()==false){
 			Double width = progressBar.getWidth(); 
 			width = getNewWidth();
