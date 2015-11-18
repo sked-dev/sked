@@ -75,7 +75,7 @@ public class Assignment {
 	private String name;
 	private LocalDate dueDate;
 	private LocalDate startDate;
-	private ArrayList<Subtask> subtasks;
+	private List<Subtask> subtasks;
 	private Course course;
 
 	private Assignment(Builder assignmentBuilder) {
@@ -130,7 +130,7 @@ public class Assignment {
 	/**
 	 * @return A <i>modifiable</i> ArrayList of subtasks.
 	 */
-	public ArrayList<Subtask> getSubtasks() {
+	public List<Subtask> getSubtasks() {
 		return subtasks;
 	}
 
@@ -161,8 +161,8 @@ public class Assignment {
 			return (double) getWeightedCompletion() / (double) getWeightedDifficulty();
 	}
 
-	public void setSubtasks(ArrayList<Subtask> subtasks) {
-		this.subtasks = subtasks;
+	public void setSubtasks(List<Subtask> list) {
+		this.subtasks = list;
 	}
 
 	public Course getCourse() {

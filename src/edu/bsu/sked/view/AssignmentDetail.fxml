@@ -29,12 +29,12 @@
    <bottom>
       <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="5.0" style="-fx-background-color: #DDDDDD;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="saveButton" defaultButton="true" text="Save" onAction="#save" />
-            <Button fx:id="revertButton" text="Revert" />
+            <Button fx:id="saveButton" defaultButton="true" onAction="#save" text="Save" />
+            <Button fx:id="revertButton" text="Revert" onAction="#revert" />
             <Button fx:id="editButton" text="Edit" />
-            <Button fx:id="closeButton" cancelButton="true" text="Close" onAction="#close" />
+            <Button fx:id="closeButton" cancelButton="true" onAction="#close" text="Close" />
             <Separator fx:id="deleteSeparator" orientation="VERTICAL" />
-            <Button fx:id="deleteButton" text="Delete" onAction="#delete" />
+            <Button fx:id="deleteButton" onAction="#delete" text="Delete" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -83,6 +83,12 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </GridPane>
+            <Label text="Course" />
+            <AnchorPane>
+               <children>
+                  <ComboBox fx:id="coursesComboBox" prefWidth="150.0" promptText="Select course..." AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" />
+               </children>
+            </AnchorPane>
             <Label text="Tasks" VBox.vgrow="NEVER">
                <padding>
                   <Insets top="10.0" />

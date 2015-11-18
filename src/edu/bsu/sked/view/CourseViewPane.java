@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import edu.bsu.sked.model.Course;
+import edu.bsu.sked.model.SkedDataWriteFailedException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -97,6 +98,18 @@ public class CourseViewPane extends BorderPane implements Initializable, Navigat
 		SkedApplication.getSkedData().getCourses().add(course);
 		refresh();
 		courseNameField.clear();
+		save();
 	}
+	
+	private void save() {
+		try {
+			SkedApplication.saveSkedData();
+		} catch (SkedDataWriteFailedException e) {
+			//TODO
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 }

@@ -29,7 +29,7 @@ public class SubtaskTest {
 
 	@Test
 	public void testDescriptionIsEdited() {
-		subtask1.editDescription("Write edit description test");
+		subtask1.setDescription("Write edit description test");
 		String description = subtask1.getDescription();
 		Assert.assertEquals(description, "Write edit description test");
 	}

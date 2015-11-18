@@ -46,16 +46,23 @@ public class Subtask {
 	}
 	
 	public enum Difficulty {
-		EASY(1), NORMAL(2), DIFFICULT(4);
+		EASY(1, "Easy"), NORMAL(2, "Normal"), DIFFICULT(4, "Difficult");
 		
 		private int weight;
+		private String string;
 		
-		Difficulty(int weight) {
+		Difficulty(int weight, String string) {
 			this.weight = weight;
+			this.string = string;
 		}
 		
 		public int getWeight() {
 			return weight;
+		}
+		
+		@Override
+		public String toString() {
+			return string;
 		}
 	}
 
@@ -73,7 +80,7 @@ public class Subtask {
 		return description;
 	}
 
-	public void editDescription(String str) {
+	public void setDescription(String str) {
 		description = str;
 	}
 

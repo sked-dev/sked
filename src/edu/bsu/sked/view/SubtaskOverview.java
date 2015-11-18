@@ -6,11 +6,13 @@ import java.util.ResourceBundle;
 import edu.bsu.sked.model.Subtask;
 import edu.bsu.sked.model.Subtask.Difficulty;
 import javafx.scene.layout.HBox;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.fxml.Initializable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
@@ -20,53 +22,70 @@ public class SubtaskOverview extends HBox implements Initializable {
 		VIEW, EDIT
 	}
 
-	@FXML HBox root;
-	@FXML CheckBox completion;
-	@FXML TextField subtaskDescription;
-	@FXML ComboBox<Subtask.Difficulty> difficultiesDisplay;
-	@FXML Button plus;
-	@FXML Button minus;
+	@FXML private HBox root;
+	@FXML private CheckBox completion;
+	@FXML private TextField subtaskDescription;
+	@FXML private ComboBox<Subtask.Difficulty> difficultiesDisplay;
+	@FXML private Button plus;
+	@FXML private Button minus;
 
 	private Subtask subtask;
-	private Parent hbox;
-
-	public SubtaskOverview(Subtask subtask) {
+	private SubtaskListVBox parent;
+	
+	public SubtaskOverview(Subtask subtask, SubtaskListVBox parent) {
 		super();
 		this.subtask = subtask;
-		configureFXMLHBox();
-	}
-
-	public SubtaskOverview() {
-		super();
-		subtask = Subtask.emptySubtask();
+		this.parent = parent;
 		configureFXMLHBox();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		difficultiesDisplay.getItems().clear();
-		difficultiesDisplay.getItems().addAll(Difficulty.values());
-		difficultiesDisplay.getSelectionModel().select(Difficulty.NORMAL);
+		setValues();
+		addSubtaskNameListener();
+	}
+
+	private void setValues() {
+		difficultiesDisplay.setItems(FXCollections.observableArrayList(Difficulty.values()));
+		difficultiesDisplay.setValue(subtask.getDifficulty());
+		completion.setSelected(subtask.isComplete());
+		subtaskDescription.setText(subtask.getDescription());
+	}
+
+	private void addSubtaskNameListener() {
+		subtaskDescription.textProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+				subtask.setDescription(newValue);
+			}
+			
+		});
 	}
 
 	@FXML
-	public void selectDificulty() {
-		Difficulty selection = difficultiesDisplay.getSelectionModel().getSelectedItem();
-		subtask.setDifficulty(selection);
+	public void handleCompletionAction() {
+		subtask.setCompletion(completion.isSelected());
+	}
+	
+	@FXML
+	public void handleDescriptionAction() {
+		subtask.setDescription(subtaskDescription.getText());
+	}
+	
+	@FXML
+	public void handleDifficultyChange() {
+		subtask.setDifficulty(difficultiesDisplay.getValue());
 	}
 
 	@FXML
 	public void removeSubtask() {
-
+		parent.remove(subtask);
 	}
 
 	@FXML
 	public void addSubtask() {
-	}
-
-	@FXML
-	public void fire() {
-		completion.fire();
+		parent.addBlankSubtask();
 	}
 
 	private void configureFXMLHBox() {
