@@ -1,6 +1,12 @@
 package edu.bsu.sked.model;
 
 public class Subtask {
+	
+	public static Subtask emptySubtask() {
+		Builder b = new Builder();
+		b.description = "";
+		return b.build();
+	}
 
 	public static class Builder {
 		private String description = null;
@@ -40,7 +46,24 @@ public class Subtask {
 	}
 	
 	public enum Difficulty {
-		EASY, NORMAL, DIFFICULT
+		EASY(1, "Easy"), NORMAL(2, "Normal"), DIFFICULT(4, "Difficult");
+		
+		private int weight;
+		private String string;
+		
+		Difficulty(int weight, String string) {
+			this.weight = weight;
+			this.string = string;
+		}
+		
+		public int getWeight() {
+			return weight;
+		}
+		
+		@Override
+		public String toString() {
+			return string;
+		}
 	}
 
 	private String description;
@@ -57,7 +80,7 @@ public class Subtask {
 		return description;
 	}
 
-	public void editDescription(String str) {
+	public void setDescription(String str) {
 		description = str;
 	}
 

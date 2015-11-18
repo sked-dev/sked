@@ -13,11 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-public class AssignmentViewPane implements NavigationTarget {
+public class AssignmentViewPane extends BorderPane implements NavigationTarget {
 	
 	private final Image icon;
 	private static final String ASSIGNMENTS = "Assignments";
-	private final BorderPane pane = new BorderPane();
 	
 	public AssignmentViewPane() {
 		super();
@@ -32,6 +31,10 @@ public class AssignmentViewPane implements NavigationTarget {
 			return null; 
 		}
 	}
+	
+	public void refresh(){
+		setUpAssignmentGrid();
+	}
 
 	private void setUpPane() {
 		setUpAssignmentGrid();
@@ -45,7 +48,7 @@ public class AssignmentViewPane implements NavigationTarget {
 		ScrollPane listWrapper = wrapInScrollPane(list);
 		list.setMinSize(120, 120);
 		list.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		pane.setCenter(listWrapper);
+		setCenter(listWrapper);
 	}
 
 	private ScrollPane wrapInScrollPane(Node node) {
@@ -64,12 +67,12 @@ public class AssignmentViewPane implements NavigationTarget {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				AssignmentDetailEditorStage.newAssignment();
+				AssignmentDetailStage.newAssignment();
 				setUpAssignmentGrid();
 			}
 		});
 		actionButtons.getChildren().add(newAssignmentButton);
-		pane.setBottom(actionButtons);
+		setBottom(actionButtons);
 	}
 
 	@Override
@@ -84,7 +87,7 @@ public class AssignmentViewPane implements NavigationTarget {
 	
 	@Override
 	public BorderPane getNode() {
-		return pane;
+		return this;
 	}
 
 }

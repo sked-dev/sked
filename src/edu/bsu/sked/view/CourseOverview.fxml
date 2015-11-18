@@ -20,11 +20,11 @@
             <Label fx:id="courseRenameErrorLabel" text="" textFill="RED" visible="false" />
          </children>
       </HBox>
-      <Label fx:id="assignmentProgressLabel" text="[Assignments]" />
-      <Label fx:id="subtaskProgressLabel" text="[Subtasks]" />
+      <Label fx:id="assignmentProgressLabel" text="[Assignments]" visible="false" managed="false" />
+      <Label fx:id="subtaskProgressLabel" text="[Subtasks]" visible="false" managed="false" />
       <HBox alignment="CENTER_RIGHT" spacing="5.0">
          <children>
-            <ToggleButton fx:id="prioritizeButton" mnemonicParsing="false" onAction="#handlePrioritizeButton" text="Prioritize" />
+            <ToggleButton fx:id="prioritizeButton" mnemonicParsing="false" onAction="#handlePrioritizeButton" text="Prioritize" visible="false" />
             <Button fx:id="renameButton" mnemonicParsing="false" onAction="#handleRenameButton" text="Rename" />
             <Button mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textFill="RED" />
          </children>

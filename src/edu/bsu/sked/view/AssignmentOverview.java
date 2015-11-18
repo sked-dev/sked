@@ -13,7 +13,6 @@ public class AssignmentOverview extends GridPane {
 	private Assignment assignment;
 	private Label assignmentName = new Label();
 	private Label assignmentDueDate = new Label();
-	private ProgressBar progressBar = new ProgressBar();
 	
 	public AssignmentOverview(Assignment assignment) {
 		super();
@@ -24,9 +23,11 @@ public class AssignmentOverview extends GridPane {
 		this.add(assignmentName, 0, 0, 1, 1);
 		this.add(assignmentDueDate, 0, 1);
 		this.add(getEditHyperlink(), 0, 2);
-		this.add(progressBar.buildProgressBar(),0,3);
+		this.setPrefWidth(300);
 	}
 	
+
+
 	private void getValues() {
 		assignmentName.setText(assignment.getName());
 		assignmentDueDate.setText(assignment.getRelativeDueDate());
@@ -38,14 +39,17 @@ public class AssignmentOverview extends GridPane {
 
 			@Override
 			public void handle(ActionEvent event) {
-				AssignmentDetailEditorStage editor = new AssignmentDetailEditorStage(assignment);
-				editor.showAndWait();
-				getValues();
+				AssignmentDetailStage.edit(assignment);
+				getViewPane().refresh();
 			}
 			
 		});
 		return editLink;
 		
+	}
+
+	private AssignmentViewPane getViewPane() {
+		return (AssignmentViewPane) this.getParent().getParent().getParent().getParent().getParent(); //TODO: Can this be cleaned up?
 	}
 	
 }

@@ -5,12 +5,14 @@ import java.util.HashMap;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 public class NavigationPane extends BorderPane {
 
 	private static final double BUTTON_SIZE = 100;
 	private NavigationButtonsBox navigationButtons;
+	Label username = new Label();
 	private HashMap<NavigationButton, Node> availablePanes = new HashMap<NavigationButton, Node>();
 
 	private NavigationPane() {

@@ -13,6 +13,15 @@ public class Assignment {
 		private LocalDate startDate = LocalDate.now();
 		private ArrayList<Subtask> subtasks = new ArrayList<>();
 		private Course course = null;
+		
+		public static Assignment emptyAssignment() {
+			Builder b = new Builder();
+			b.name="";
+			b.dueDate= LocalDate.now();
+			b.startDate= LocalDate.now();
+			return b.build();
+		}
+		
 
 		public static Builder withName(String name) {
 			Builder builder = new Builder();
@@ -29,12 +38,12 @@ public class Assignment {
 			this.startDate = startDate;
 			return this;
 		}
-		
+
 		public Builder andSubtasks(List<Subtask> tasks) {
 			this.subtasks = new ArrayList<Subtask>(tasks);
 			return this;
 		}
-		
+
 		public Builder andCourse(Course course) {
 			this.course = course;
 			return this;
@@ -66,7 +75,7 @@ public class Assignment {
 	private String name;
 	private LocalDate dueDate;
 	private LocalDate startDate;
-	private ArrayList<Subtask> subtasks;
+	private List<Subtask> subtasks;
 	private Course course;
 
 	private Assignment(Builder assignmentBuilder) {
@@ -80,7 +89,7 @@ public class Assignment {
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -88,7 +97,7 @@ public class Assignment {
 	public LocalDate getDueDate() {
 		return dueDate;
 	}
-	
+
 	public String getRelativeDueDate() {
 		LocalDate today = LocalDate.now();
 		return generateRelativeDateString(today);
@@ -105,7 +114,7 @@ public class Assignment {
 			return "Due in " + generator.getPeriodString() + ".";
 		}
 	}
-	
+
 	public void setDueDate(LocalDate date) {
 		this.dueDate = date;
 	}
@@ -117,13 +126,43 @@ public class Assignment {
 	public void setStartDate(LocalDate date) {
 		this.startDate = date;
 	}
-	
+
 	/**
-	 * @return
-	 * 		A <i>modifiable</i> ArrayList of subtasks.
+	 * @return A <i>modifiable</i> ArrayList of subtasks.
 	 */
-	public ArrayList<Subtask> getSubtasks() {
+	public List<Subtask> getSubtasks() {
 		return subtasks;
+	}
+
+	public int getWeightedDifficulty() {
+		int weightedDifficulty = 0;
+		for (Subtask task : subtasks) {
+			weightedDifficulty += task.getDifficulty().getWeight();
+		}
+		return weightedDifficulty;
+	}
+
+	public int getWeightedCompletion() {
+		int weightedCompletion = 0;
+		for (Subtask task : subtasks) {
+			weightedCompletion += getCompletionWeight(task);
+		}
+		return weightedCompletion;
+	}
+
+	private int getCompletionWeight(Subtask task) {
+		return task.getCompletion() ? task.getDifficulty().getWeight() : 0;
+	}
+
+	public double getCompletionPercent() {
+		if (getWeightedDifficulty() == 0) {
+			return 0;
+		} else
+			return (double) getWeightedCompletion() / (double) getWeightedDifficulty();
+	}
+
+	public void setSubtasks(List<Subtask> list) {
+		this.subtasks = list;
 	}
 
 	public Course getCourse() {

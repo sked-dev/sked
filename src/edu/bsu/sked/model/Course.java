@@ -31,4 +31,9 @@ public class Course {
 	public boolean isPrioritized() {
 		return prioritized;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

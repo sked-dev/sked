@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <CheckBox fx:id="completion" mnemonicParsing="false" onAction="#handleCompletionAction">
+         <graphic>
+            <TextField fx:id="subtaskDescription" onAction="#handleDescriptionAction" />
+         </graphic>
+      </CheckBox>
+      <ComboBox fx:id="difficultiesDisplay" onAction="#handleDifficultyChange" prefWidth="100.0" promptText="Difficult" />
+      <Button fx:id="minus" mnemonicParsing="false" onAction="#removeSubtask" text="-" />
+      <Button fx:id="plus" mnemonicParsing="false" onAction="#addSubtask" text="+" />
+   </children>
+</fx:root>

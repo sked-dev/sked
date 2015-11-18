@@ -5,7 +5,7 @@ public class UserName {
 	private String firstName;
 	private String lastName;
 	
-	private UserName(Builder b) {
+	public UserName(Builder b) {
 		firstName = b.firstName;
 		lastName = b.lastName;
 	}
@@ -18,8 +18,8 @@ public class UserName {
 	}
 	
 	public static class Builder {
-		private String firstName = null;
-		private String lastName = null;
+		private String firstName = "";
+		private String lastName = "";
 		
 		public static Builder withFirstName(String firstName) {
 			Builder b = new Builder();
