@@ -1,7 +1,7 @@
 package edu.bsu.sked.model;
 
 public class Subtask {
-	
+
 	public static Subtask emptySubtask() {
 		Builder b = new Builder();
 		b.description = "";
@@ -36,7 +36,7 @@ public class Subtask {
 				throw new IllegalStateException("Invalid field state.");
 			}
 		}
-		
+
 		public boolean ready() {
 			if (description == null) {
 				return false;
@@ -44,22 +44,22 @@ public class Subtask {
 			return true;
 		}
 	}
-	
+
 	public enum Difficulty {
 		EASY(1, "Easy"), NORMAL(2, "Normal"), DIFFICULT(4, "Difficult");
-		
+
 		private int weight;
 		private String string;
-		
+
 		Difficulty(int weight, String string) {
 			this.weight = weight;
 			this.string = string;
 		}
-		
+
 		public int getWeight() {
 			return weight;
 		}
-		
+
 		@Override
 		public String toString() {
 			return string;
@@ -91,7 +91,7 @@ public class Subtask {
 	public Difficulty getDifficulty() {
 		return difficulty;
 	}
-	
+
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 	}
@@ -103,7 +103,7 @@ public class Subtask {
 	public boolean getCompletion() {
 		return completion;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -137,6 +137,6 @@ public class Subtask {
 
 	@Override
 	public String toString() {
-		return description + '\n' + completion + '\n' + difficulty ;
+		return description + '\n' + completion + '\n' + difficulty;
 	}
 }

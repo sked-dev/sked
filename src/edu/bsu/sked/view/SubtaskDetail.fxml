@@ -14,6 +14,5 @@
       </CheckBox>
       <ComboBox fx:id="difficultiesDisplay" onAction="#handleDifficultyChange" prefWidth="100.0" promptText="Difficult" />
       <Button fx:id="minus" mnemonicParsing="false" onAction="#removeSubtask" text="-" />
-      <Button fx:id="plus" mnemonicParsing="false" onAction="#addSubtask" text="+" />
    </children>
 </fx:root>

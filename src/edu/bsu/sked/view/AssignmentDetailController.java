@@ -33,6 +33,7 @@ public class AssignmentDetailController implements Initializable {
 	@FXML private Button deleteButton;
 	@FXML private Separator deleteSeparator;
 	@FXML private ComboBox<Course> coursesComboBox;
+	@FXML private Button addButton;
 	private SubtaskListVBox subtaskList;
 	private Assignment assignment;
 	private Mode mode;
@@ -122,6 +123,7 @@ public class AssignmentDetailController implements Initializable {
 		editButton.setManaged(true);
 		deleteButton.setManaged(true);
 		deleteSeparator.setManaged(true);
+		addButton.setManaged(true);
 		closeButton.setText("Close");
 	}
 
@@ -131,6 +133,7 @@ public class AssignmentDetailController implements Initializable {
 		editButton.setManaged(false);
 		deleteButton.setManaged(true);
 		deleteSeparator.setManaged(true);
+		addButton.setManaged(true);
 		closeButton.setText("Close");
 	}
 
@@ -140,12 +143,18 @@ public class AssignmentDetailController implements Initializable {
 		editButton.setManaged(false);
 		deleteButton.setManaged(false);
 		deleteSeparator.setManaged(false);
+		addButton.setManaged(true);
 		closeButton.setText("Cancel");
 	}
 
 	public void setMode(Mode mode) {
 		this.mode = mode;
 		configureMode();
+	}
+	
+	@FXML
+	public void addSubtask() {
+		subtaskList.addBlankSubtask();
 	}
 
 	@FXML
