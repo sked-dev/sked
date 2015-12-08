@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="SKED" textAlignment="CENTER">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="250.0" />
+            <Label text="Where would you like to save your file?" />
+            <HBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <Button defaultButton="true" mnemonicParsing="false" onAction="#onCreateButton" text="Create new SKED file">
+                     <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" fx:id="createButtonIcon">
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onOpenButton" text="Open SKED file">
+                     <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" fx:id="openButtonIcon">
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
+   <bottom>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER_RIGHT">
+         <children>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancelButton" text="Cancel" AnchorPane.rightAnchor="0.0" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+         </padding>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

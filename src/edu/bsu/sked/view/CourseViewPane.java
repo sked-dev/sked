@@ -43,11 +43,7 @@ public class CourseViewPane extends BorderPane implements Initializable, Navigat
 	}
 
 	private Image configureIcon() {
-		try {
-			return Assets.getImageFromAssetName("ClassesIcon.png");
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		return Assets.getImageFromAssetName("ClassesIcon.png");
 	}
 	
 	@Override
