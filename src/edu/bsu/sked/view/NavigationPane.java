@@ -4,19 +4,20 @@ import java.util.HashMap;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 public class NavigationPane extends BorderPane {
 
-	private static final double BUTTON_SIZE = 100;
 	private NavigationButtonsBox navigationButtons;
 	Label username = new Label();
 	private HashMap<NavigationButton, Node> availablePanes = new HashMap<NavigationButton, Node>();
 
 	private NavigationPane() {
 		super();
+		setPadding(new Insets(10));
 		navigationButtons = new NavigationButtonsBox();
 
 		navigationButtons.setOnNavigate(new EventHandler<Event>() {
@@ -46,7 +47,6 @@ public class NavigationPane extends BorderPane {
 	public void add(NavigationTarget pane) {
 		NavigationButton button = new NavigationButton(pane.getLabel(), pane.getIcon());
 		navigationButtons.add(button);
-		navigationButtons.setMaxWidth(BUTTON_SIZE);
 		availablePanes.put(button, pane.getNode());
 	}
 

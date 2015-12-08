@@ -5,10 +5,9 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class NavigationButtonsBox extends Pane {
+public class NavigationButtonsBox extends VBox {
 	
 	public static class NavigateEvent extends Event {
 		
@@ -25,7 +24,7 @@ public class NavigationButtonsBox extends Pane {
 
 	}
 
-	private VBox container = new VBox(15);
+	//private VBox container = new VBox(15);
 	private NavigationButton currentButton;
 
 	public static NavigationButtonsBox loadNavigationButtons() {
@@ -36,11 +35,14 @@ public class NavigationButtonsBox extends Pane {
 	
 	public NavigationButtonsBox() {
 		super();
-		getChildren().add(container);
+		this.setPrefWidth(USE_COMPUTED_SIZE);
+		this.setMaxWidth(350);
+		this.setSpacing(15);
+		this.setFillWidth(true);
 	}
 	
 	public void add(NavigationButton button) {
-		container.getChildren().add(button);
+		getChildren().add(button);
 		configureActions(button);
 	}
 
@@ -67,7 +69,7 @@ public class NavigationButtonsBox extends Pane {
 	}
 
 	private void untoggleOthers() {
-		for (Node child : container.getChildren()) {
+		for (Node child : getChildren()) {
 			NavigationButton button = (NavigationButton) child;
 			if (button != currentButton) {
 				button.setSelected(false);
@@ -81,7 +83,7 @@ public class NavigationButtonsBox extends Pane {
 
 
 	public void navigateByIndex(int index) {
-		NavigationButton button = (NavigationButton) container.getChildren().get(index);
+		NavigationButton button = (NavigationButton) getChildren().get(index);
 		navigate(button);
 	}
 	

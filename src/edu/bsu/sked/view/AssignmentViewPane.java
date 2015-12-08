@@ -14,22 +14,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 public class AssignmentViewPane extends BorderPane implements NavigationTarget {
-	
-	private final Image icon;
 	private static final String ASSIGNMENTS = "Assignments";
 	
 	public AssignmentViewPane() {
 		super();
-		icon = configureIcon();
 		setUpPane();
-	}
-	
-	private Image configureIcon() {
-		try {
-			return Assets.getImageFromAssetName("assignmentIcon.png");
-		} catch (Exception e) {
-			return null; 
-		}
 	}
 	
 	public void refresh(){
@@ -77,7 +66,7 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget {
 
 	@Override
 	public Image getIcon() {
-		return icon;
+		return Assets.IC_ASSIGNMENT;
 	}
 
 	@Override

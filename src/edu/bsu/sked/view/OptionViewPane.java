@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
 public class OptionViewPane implements NavigationTarget {
-	private final Image icon;
 	private static final String OPTIONS = "Options";
 	private final GridPane pane = new GridPane();
 	TextField firstName = new TextField();
@@ -22,16 +21,7 @@ public class OptionViewPane implements NavigationTarget {
 	
 	public OptionViewPane(){
 		super();
-		icon = configureIcon();
 		setUpPane();
-	}
-
-	private Image configureIcon() {
-		try {
-			return Assets.getImageFromAssetName("options.png");
-		} catch (Exception e) {
-			return null; 
-		}
 	}
 	
 	private void setUpPane() {
@@ -105,7 +95,7 @@ public class OptionViewPane implements NavigationTarget {
 
 	@Override
 	public Image getIcon() {
-		return icon;
+		return Assets.IC_OPTIONS;
 	}
 
 	@Override

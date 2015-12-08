@@ -26,7 +26,6 @@ public class CourseViewPane extends BorderPane implements Initializable, Navigat
 	@FXML private VBox courseOverviewBox;
 	@FXML private Button addCourseButton;
 	@FXML private TextField courseNameField;
-	private Image icon = configureIcon();
 	private Set<Course> courses;
 	private List<CourseOverview> overviews = new ArrayList<>();
 	
@@ -41,14 +40,10 @@ public class CourseViewPane extends BorderPane implements Initializable, Navigat
 			e.printStackTrace();
 		}
 	}
-
-	private Image configureIcon() {
-		return Assets.getImageFromAssetName("ClassesIcon.png");
-	}
 	
 	@Override
 	public Image getIcon() {
-		return icon;
+		return Assets.IC_COURSE;
 	}
 
 	@Override
