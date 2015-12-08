@@ -126,6 +126,26 @@ public class Assignment {
 	public void setStartDate(LocalDate date) {
 		this.startDate = date;
 	}
+	
+	public String getSubtaskCompletionDescription() {
+			return getNumberOfCompleteSubtasks() +//
+					" of " + getNumberOfSubtasks()//
+					+ " tasks completed";	
+	}
+	
+	public int getNumberOfSubtasks() {
+		return subtasks.size();
+	}
+	
+	public int getNumberOfCompleteSubtasks() {
+		int completeTasks = 0;
+		for(Subtask task:subtasks){
+			if(task.isComplete()){
+				completeTasks+=1;
+			}
+		}
+		return completeTasks;
+	}
 
 	/**
 	 * @return A <i>modifiable</i> ArrayList of subtasks.

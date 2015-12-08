@@ -13,6 +13,7 @@ public class AssignmentOverview extends GridPane {
 	private Assignment assignment;
 	private Label assignmentName = new Label();
 	private Label assignmentDueDate = new Label();
+	private Label assignmentTaskCompletion = new Label(); 
 	private Label assignmentCourse = new Label();
 	public AssignmentOverview(Assignment assignment) {
 		super();
@@ -22,8 +23,9 @@ public class AssignmentOverview extends GridPane {
 		getValues();
 		this.add(assignmentName, 0, 0, 1, 1);
 		this.add(assignmentCourse, 0, 1);
-		this.add(assignmentDueDate, 0, 2);
-		this.add(getEditHyperlink(), 0, 3);
+		this.add(assignmentTaskCompletion, 0, 2);
+		this.add(assignmentDueDate, 0, 3);
+		this.add(getEditHyperlink(), 0, 4);
 		this.setPrefWidth(300);
 	}
 	
@@ -32,6 +34,7 @@ public class AssignmentOverview extends GridPane {
 	private void getValues() {
 		assignmentName.setText(assignment.getName());
 		assignmentDueDate.setText(assignment.getRelativeDueDate());
+		assignmentTaskCompletion.setText(assignment.getSubtaskCompletionDescription());
 		assignmentCourse.setText(assignment.getCourse().getName());
 	}
 

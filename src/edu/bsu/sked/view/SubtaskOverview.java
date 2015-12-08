@@ -26,7 +26,6 @@ public class SubtaskOverview extends HBox implements Initializable {
 	@FXML private CheckBox completion;
 	@FXML private TextField subtaskDescription;
 	@FXML private ComboBox<Subtask.Difficulty> difficultiesDisplay;
-	@FXML private Button plus;
 	@FXML private Button minus;
 
 	private Subtask subtask;
@@ -81,11 +80,6 @@ public class SubtaskOverview extends HBox implements Initializable {
 	@FXML
 	public void removeSubtask() {
 		parent.remove(subtask);
-	}
-
-	@FXML
-	public void addSubtask() {
-		parent.addBlankSubtask();
 	}
 
 	private void configureFXMLHBox() {
