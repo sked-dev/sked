@@ -6,7 +6,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" type="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <Button mnemonicParsing="false" onAction="#handleNewAssignmentButtonAction" text="Add assignment..." BorderPane.alignment="BOTTOM_LEFT">
@@ -49,11 +48,12 @@
                         <ToggleGroup fx:id="sortingMenuOptions" />
                      </toggleGroup>
                   </RadioMenuItem>
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByName" text="Name" toggleGroup="$sortingMenuOptions" />
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByCourse" text="Course" toggleGroup="$sortingMenuOptions" />
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByStartDate" text="Start date" toggleGroup="$sortingMenuOptions" />
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDueDate" text="Due date" toggleGroup="$sortingMenuOptions" />
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDifficulty" text="Calculated difficulty" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByName" text="Name (A-Z)" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByCourse" text="Course (A-Z)" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByStartDate" text="Start date (earliest first)" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDueDate" text="Due date (earliest first)" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByCompletion" text="Completion (lowest first)" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDifficulty" text="Calculated difficulty (highest first)" toggleGroup="$sortingMenuOptions" />
                </items>
                <GridPane.margin>
                   <Insets right="5.0" />
