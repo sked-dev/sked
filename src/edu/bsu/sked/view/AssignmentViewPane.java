@@ -2,7 +2,6 @@ package edu.bsu.sked.view;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import edu.bsu.sked.model.*;
@@ -11,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 
@@ -19,6 +19,9 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 	
 	@FXML private ScrollPane assignmentListScrollPane;
 	@FXML private Button newAssignmentButton;
+	@FXML private ToggleButton prioritizedFilterButton;
+	private AssignmentListGrid list;
+	private AssignmentListOrganizer assignmentOrganizer = new AssignmentListOrganizer(SkedApplication.getSkedData().getAssignments());
 	
 	public AssignmentViewPane() {
 		super();
@@ -46,8 +49,7 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 	}	
 
 	private void setUpAssignmentGrid() {
-		List<Assignment> assignments = SkedApplication.getSkedData().getAssignments();
-		AssignmentListGrid list = new AssignmentListGrid(assignments);
+		list = new AssignmentListGrid(assignmentOrganizer.organize());
 		assignmentListScrollPane.setContent(list);
 	}
 	
@@ -94,7 +96,8 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 	
 	@FXML
 	private void handlePrioritizationFilterToggled() {
-		// TODO Implement before merging to master
+		assignmentOrganizer.setFilterByCoursePriority(prioritizedFilterButton.isSelected());
+		refresh();
 	}
 
 	@Override

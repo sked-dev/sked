@@ -62,7 +62,7 @@
                   <Tooltip text="Change which order you see the assignments in" />
                </tooltip>
             </MenuButton>
-            <ToggleButton mnemonicParsing="false" onAction="#handlePrioritizationFilterToggled" text="Prioritized only" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ToggleButton fx:id="prioritizedFilterButton" mnemonicParsing="false" onAction="#handlePrioritizationFilterToggled" text="Prioritized only" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
