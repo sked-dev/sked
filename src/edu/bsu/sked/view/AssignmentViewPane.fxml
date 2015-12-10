@@ -9,7 +9,7 @@
 
 <fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" type="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
-      <Button mnemonicParsing="false" onAction="#handleNewAssignentButtonAction" text="Add assignment..." BorderPane.alignment="BOTTOM_LEFT">
+      <Button mnemonicParsing="false" onAction="#handleNewAssignmentButtonAction" text="Add assignment..." BorderPane.alignment="BOTTOM_LEFT">
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
