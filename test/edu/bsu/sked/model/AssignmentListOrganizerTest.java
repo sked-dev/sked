@@ -25,7 +25,7 @@ public class AssignmentListOrganizerTest {
 	}
 	
 	@Test
-	public void testNewOrganizerReturnsDefensiveCopy() {
+	public void testNewOrganizerDoesNotModifyOldList() {
 		List<Assignment> newList = organizer.organize();
 		oldList.remove(2);
 		oldList.add(2, oldList.remove(0));

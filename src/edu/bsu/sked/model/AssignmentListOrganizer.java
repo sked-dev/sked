@@ -9,7 +9,7 @@ public class AssignmentListOrganizer {
 	private boolean filterByCoursePriority = false;
 
 	public AssignmentListOrganizer(List<Assignment> assignments) {
-		this.oldList = new LinkedList<>(assignments);
+		this.oldList = assignments;
 	}
 
 	public List<Assignment> organize() {
