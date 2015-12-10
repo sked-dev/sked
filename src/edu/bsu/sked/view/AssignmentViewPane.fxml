@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" type="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#handleNewAssignentButtonAction" text="Add assignment..." BorderPane.alignment="BOTTOM_LEFT">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+   <center>
+      <ScrollPane fx:id="assignmentListScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="120.0" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </ScrollPane>
+   </center>
+   <top>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextFlow GridPane.columnSpan="2147483647">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assignments">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+            <MenuButton mnemonicParsing="false" text="Sort by..." GridPane.rowIndex="1">
+               <items>
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByAddOrder" text="Add order" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByName" text="Name" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByCourse" text="Course" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByStartDate" text="Start date" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDueDate" text="Due date" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDifficulty" text="Calculated difficulty" />
+               </items>
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+               <tooltip>
+                  <Tooltip text="Change which order you see the assignments in" />
+               </tooltip>
+            </MenuButton>
+            <ToggleButton mnemonicParsing="false" onAction="#handlePrioritiztionFilterToggled" text="Prioritized only" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+               <tooltip>
+                  <Tooltip text="Only show assignments that are from &quot;Prioritized&quot; classes." />
+               </tooltip>
+            </ToggleButton>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </GridPane>
+   </top>
+</fx:root>
