@@ -63,6 +63,11 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 	}
 	
 	@FXML
+	private void sortByName() {
+		// TODO Implement before merging to master
+	}
+	
+	@FXML
 	private void sortByCourse() {
 		// TODO Implement before merging to master
 	}
