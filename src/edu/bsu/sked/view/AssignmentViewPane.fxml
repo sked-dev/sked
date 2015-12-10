@@ -44,12 +44,16 @@
             </TextFlow>
             <MenuButton mnemonicParsing="false" text="Sort by..." GridPane.rowIndex="1">
                <items>
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByAddOrder" text="Add order" />
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByName" text="Name" />
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByCourse" text="Course" />
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByStartDate" text="Start date" />
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDueDate" text="Due date" />
-                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDifficulty" text="Calculated difficulty" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByAddOrder" selected="true" text="Add order">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="sortingMenuOptions" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByName" text="Name" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByCourse" text="Course" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByStartDate" text="Start date" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDueDate" text="Due date" toggleGroup="$sortingMenuOptions" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#sortByDifficulty" text="Calculated difficulty" toggleGroup="$sortingMenuOptions" />
                </items>
                <GridPane.margin>
                   <Insets right="5.0" />
