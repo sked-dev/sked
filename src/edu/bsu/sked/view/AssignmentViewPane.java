@@ -1,20 +1,24 @@
 package edu.bsu.sked.view;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import edu.bsu.sked.model.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 
-public class AssignmentViewPane extends BorderPane implements NavigationTarget {
+public class AssignmentViewPane extends BorderPane implements NavigationTarget, Initializable {
 	private static final String ASSIGNMENTS = "Assignments";
+	
+	@FXML private ScrollPane assignmentListScrollPane;
+	@FXML private Button newAssignmentButton;
 	
 	public AssignmentViewPane() {
 		super();
@@ -26,42 +30,61 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget {
 	}
 
 	private void setUpPane() {
-		setUpAssignmentGrid();
-		
-		addActionButtons();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("AssignmentViewPane.fxml"));
+		loader.setController(this);
+		loader.setRoot(this);
+		try {
+			loader.load();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
+	
+	@Override
+	public void initialize(URL resource, ResourceBundle resourceBundle) {
+		refresh();
+	}	
 
 	private void setUpAssignmentGrid() {
 		List<Assignment> assignments = SkedApplication.getSkedData().getAssignments();
 		AssignmentListGrid list = new AssignmentListGrid(assignments);
-		ScrollPane listWrapper = wrapInScrollPane(list);
-		list.setMinSize(120, 120);
-		list.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		setCenter(listWrapper);
+		assignmentListScrollPane.setContent(list);
 	}
-
-	private ScrollPane wrapInScrollPane(Node node) {
-		ScrollPane pane = new ScrollPane();
-		pane.setContent(node);
-		pane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		pane.setHbarPolicy(ScrollBarPolicy.NEVER);
-		pane.setFitToWidth(true);
-		return pane;
+	
+	@FXML
+	private void handleNewAssignmentButtonAction() {
+		AssignmentDetailStage.newAssignment();
+		setUpAssignmentGrid();
 	}
-
-	private void addActionButtons() {
-		HBox actionButtons = new HBox();
-		Button newAssignmentButton = new Button("Add assignment...");
-		newAssignmentButton.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				AssignmentDetailStage.newAssignment();
-				setUpAssignmentGrid();
-			}
-		});
-		actionButtons.getChildren().add(newAssignmentButton);
-		setBottom(actionButtons);
+	
+	@FXML
+	private void sortByAddOrder() {
+		// TODO Implement before merging to master
+	}
+	
+	@FXML
+	private void sortByCourse() {
+		// TODO Implement before merging to master
+	}
+	
+	@FXML
+	private void sortByStartDate() {
+		// TODO Implement before merging to master
+	}
+	
+	@FXML
+	private void sortByDueDate() {
+		// TODO Implement before merging to master
+	}
+	
+	@FXML
+	private void sortByDifficulty() {
+		// TODO Implement before merging to master
+	}
+	
+	@FXML
+	private void handlePrioritizationFilterToggled() {
+		// TODO Implement before merging to master
 	}
 
 	@Override
@@ -78,5 +101,4 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget {
 	public BorderPane getNode() {
 		return this;
 	}
-
 }
