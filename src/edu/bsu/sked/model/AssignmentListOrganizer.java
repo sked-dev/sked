@@ -5,25 +5,26 @@ import java.util.List;
 
 public class AssignmentListOrganizer {
 	
-	private List<Assignment> assignments;
+	private List<Assignment> oldList;
 	private boolean filterByCoursePriority = false;
 
 	public AssignmentListOrganizer(List<Assignment> assignments) {
-		this.assignments = new LinkedList<>(assignments);
+		this.oldList = new LinkedList<>(assignments);
 	}
 
 	public List<Assignment> organize() {
+		List<Assignment> organizedList = new LinkedList<>(oldList);
 		if (filterByCoursePriority) {
-			removeNonPrioritizedAssignments();
+			removeNonPrioritizedAssignments(organizedList);
 		}
-		return assignments;
+		return organizedList;
 	}
 
-	private void removeNonPrioritizedAssignments() {
-		LinkedList<Assignment> safeCopy = new LinkedList<>(assignments);
+	private void removeNonPrioritizedAssignments(List<Assignment> modifiableList) {
+		LinkedList<Assignment> safeCopy = new LinkedList<>(modifiableList);
 		for (Assignment assignment : safeCopy) {
 			if (!assignment.getCourse().isPrioritized())
-				assignments.remove(assignment);
+				modifiableList.remove(assignment);
 		}
 	}
 
