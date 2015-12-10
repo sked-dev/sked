@@ -7,6 +7,7 @@ public class AssignmentListOrganizer {
 	
 	private List<Assignment> oldList;
 	private boolean filterByCoursePriority = false;
+	private AssignmentSortingMethod sortingMethod = AssignmentSortingMethod.DEFAULT;
 
 	public AssignmentListOrganizer(List<Assignment> assignments) {
 		this.oldList = assignments;
@@ -16,6 +17,9 @@ public class AssignmentListOrganizer {
 		List<Assignment> organizedList = new LinkedList<>(oldList);
 		if (filterByCoursePriority) {
 			removeNonPrioritizedAssignments(organizedList);
+		}
+		if (sortingMethod != AssignmentSortingMethod.NONE) {
+			organizedList.sort(sortingMethod.getComparator());
 		}
 		return organizedList;
 	}
@@ -30,6 +34,10 @@ public class AssignmentListOrganizer {
 
 	public void setFilterByCoursePriority(boolean value) {
 		filterByCoursePriority = value;
+	}
+
+	public void setSortingMethod(AssignmentSortingMethod sortingMethod) {
+		this.sortingMethod = sortingMethod;
 	}
 
 }

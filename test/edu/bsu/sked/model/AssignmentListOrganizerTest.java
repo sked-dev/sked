@@ -40,4 +40,27 @@ public class AssignmentListOrganizerTest {
 			Assert.assertTrue(assignment.getCourse().isPrioritized());
 		}
 	}
+	
+	@Test
+	public void testDefaultSortingMethodDoesNotModifyList() {
+		organizer.setSortingMethod(AssignmentSortingMethod.DEFAULT);
+		List<Assignment> newList = organizer.organize();
+		Assert.assertEquals(newList.get(0).getName(), "Mini assignment");
+		Assert.assertEquals(newList.get(1).getName(), "Big procrastination project");
+		Assert.assertEquals(newList.get(2).getName(), "Presentation");
+		Assert.assertEquals(newList.get(3).getName(), "On track project");
+		Assert.assertEquals(newList.get(4).getName(), "Medium assignment (easy done)");
+		Assert.assertEquals(newList.get(5).getName(), "Medium assignment (difficult done)");
+	}
+	
+	@Test
+	public void testNameSortingMethodSortsByName() {
+		organizer.setSortingMethod(AssignmentSortingMethod.NAME);
+		List<Assignment> newList = organizer.organize();
+		Assert.assertEquals(newList.get(0).getName(), "Big procrastination project");
+		Assert.assertEquals(newList.get(1).getName(), "Medium assignment (difficult done)");
+		Assert.assertEquals(newList.get(2).getName(), "Medium assignment (easy done)");
+		Assert.assertEquals(newList.get(3).getName(), "Mini assignment");
+		Assert.assertEquals(newList.get(5).getName(), "Presentation");
+	}
 }
