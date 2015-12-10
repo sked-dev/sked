@@ -61,6 +61,19 @@ public class AssignmentListOrganizerTest {
 		Assert.assertEquals(newList.get(1).getName(), "Medium assignment (difficult done)");
 		Assert.assertEquals(newList.get(2).getName(), "Medium assignment (easy done)");
 		Assert.assertEquals(newList.get(3).getName(), "Mini assignment");
+		Assert.assertEquals(newList.get(4).getName(), "On track project");
 		Assert.assertEquals(newList.get(5).getName(), "Presentation");
+	}
+	
+	@Test
+	public void testDueDateSortingMethodSortsByDueDate() {
+		organizer.setSortingMethod(AssignmentSortingMethod.DUE_DATE);
+		List<Assignment> newList = organizer.organize();
+		Assert.assertEquals(newList.get(0).getName(), "Presentation");
+		Assert.assertEquals(newList.get(1).getName(), "Mini assignment");
+		Assert.assertEquals(newList.get(2).getName(), "Medium assignment (difficult done)");
+		Assert.assertEquals(newList.get(3).getName(), "Big procrastination project");
+		Assert.assertEquals(newList.get(4).getName(), "Medium assignment (easy done)");
+		Assert.assertEquals(newList.get(5).getName(), "On track project");
 	}
 }

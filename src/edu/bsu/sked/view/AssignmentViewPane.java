@@ -61,12 +61,14 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 	
 	@FXML
 	private void sortByAddOrder() {
-		// TODO Implement before merging to master
+		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.NONE);
+		refresh();
 	}
 	
 	@FXML
 	private void sortByName() {
-		// TODO Implement before merging to master
+		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.NAME);
+		refresh();
 	}
 	
 	@FXML
@@ -81,7 +83,8 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 	
 	@FXML
 	private void sortByDueDate() {
-		// TODO Implement before merging to master
+		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.DUE_DATE);
+		refresh();
 	}
 	
 	@FXML

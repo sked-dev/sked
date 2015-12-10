@@ -3,7 +3,7 @@ package edu.bsu.sked.model;
 import java.util.Comparator;
 
 public enum AssignmentSortingMethod {
-	NONE(null), NAME(new AssignmentNameComparator());
+	NONE(null), NAME(new AssignmentNameComparator()), DUE_DATE(new AssignmentDueDateComparator());
 	
 	public static final AssignmentSortingMethod DEFAULT = NONE;
 	private final Comparator<Assignment> comparator;
