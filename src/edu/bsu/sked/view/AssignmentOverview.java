@@ -1,60 +1,88 @@
 package edu.bsu.sked.view;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import edu.bsu.sked.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
-public class AssignmentOverview extends GridPane {
+public class AssignmentOverview extends GridPane implements Initializable{
+	
+	@FXML private HBox root;
+	@FXML private Label assignmentNameLabel;
+	@FXML private Label subtaskLeftLabel;
+	@FXML private Label courseNameLabel;
+	@FXML private Label timeLeftLabel;
+	@FXML private DropShadow dropShadow;
 	
 	private Assignment assignment;
-	private Label assignmentName = new Label();
-	private Label assignmentDueDate = new Label();
-	private Label assignmentTaskCompletion = new Label(); 
-	private Label assignmentCourse = new Label();
+	
 	public AssignmentOverview(Assignment assignment) {
 		super();
 		this.assignment = assignment;
-		this.setStyle("-fx-background-color: white; -fx-border-color: black;");
-		this.setPadding(new Insets(15));
-		getValues();
-		this.add(assignmentName, 0, 0, 1, 1);
-		this.add(assignmentCourse, 0, 1);
-		this.add(assignmentTaskCompletion, 0, 2);
-		this.add(assignmentDueDate, 0, 3);
-		this.add(getEditHyperlink(), 0, 4);
-		this.setPrefWidth(300);
+		configureFXMLHBox();
 	}
 	
-
-
-	private void getValues() {
-		assignmentName.setText(assignment.getName());
-		assignmentDueDate.setText(assignment.getRelativeDueDate());
-		assignmentTaskCompletion.setText(assignment.getSubtaskCompletionDescription());
-		assignmentCourse.setText(SkedApplication.getSkedData().getCourse(assignment.getCourseIndex()).getName());
+	@FXML private void mouseEntered(){
+		Scene scene = this.getScene();
+		Cursor cursor = scene.getCursor();
+		scene.setCursor(cursor.HAND);
+		dropShadow.setOffsetX(3.0);
+		dropShadow.setOffsetY(3.0);
+		dropShadow.setRadius(12);
 	}
 
-	private Hyperlink getEditHyperlink() {
-		Hyperlink editLink = new Hyperlink("Edit");
-		editLink.setOnAction(new EventHandler<ActionEvent>() {
+	@FXML private void mouseExited(){
+		Scene scene = this.getScene();
+		Cursor cursor = scene.getCursor();
+		scene.setCursor(cursor.DEFAULT);
+		dropShadow.setOffsetX(0.0);
+		dropShadow.setOffsetY(0.0);
+		dropShadow.setRadius(10);
+	}
+	
+	@FXML private void mouseClicked(){
+		AssignmentDetailStage.edit(assignment);
+		getViewPane().refresh();
+	}
 
-			@Override
-			public void handle(ActionEvent event) {
-				AssignmentDetailStage.edit(assignment);
-				getViewPane().refresh();
-			}
-			
-		});
-		return editLink;
-		
+	private void getValues() {
+		assignmentNameLabel.setText(assignment.getName());
+		timeLeftLabel.setText(assignment.getRelativeDueDate());
+		subtaskLeftLabel.setText(assignment.getSubtaskCompletionDescription());
+		courseNameLabel.setText(SkedApplication.getSkedData().getCourse(assignment.getCourseIndex()).getName());
+	}
+	
+	private void configureFXMLHBox() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("assignmentOverview.fxml"));
+		loader.setRoot(this);
+		loader.setController(this);
+		try {
+			loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private AssignmentViewPane getViewPane() {
 		return (AssignmentViewPane) this.getParent().getParent().getParent().getParent().getParent(); //TODO: Can this be cleaned up?
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		getValues();
 	}
 	
 }
