@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class SkedDataFileWriter {
 	
@@ -14,7 +15,9 @@ public class SkedDataFileWriter {
 	}
 	
 	public void write(SkedDataContainer data) throws IOException {
-		Gson gson = new Gson();
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeAdapter(Assignment.class, new GsonAssignmentSerializer(data));
+		Gson gson = builder.create();
 		String jsonString = gson.toJson(data);
 		writeToFile(jsonString);
 	}

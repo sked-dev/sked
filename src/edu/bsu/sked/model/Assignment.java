@@ -77,7 +77,7 @@ public class Assignment {
 	private LocalDate dueDate;
 	private LocalDate startDate;
 	private List<Subtask> subtasks;
-	private Course course;
+	private transient Course course;
 
 	private Assignment(Builder assignmentBuilder) {
 		name = assignmentBuilder.name;
