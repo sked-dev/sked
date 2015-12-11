@@ -1,11 +1,13 @@
 package edu.bsu.sked.model;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public class AssignmentListOrganizer {
 	
 	private List<Assignment> oldList;
+	private boolean inverted;
 	private boolean filterByCoursePriority = false;
 	private AssignmentSortingMethod sortingMethod = AssignmentSortingMethod.DEFAULT;
 
@@ -21,7 +23,18 @@ public class AssignmentListOrganizer {
 		if (sortingMethod != AssignmentSortingMethod.NONE) {
 			organizedList.sort(sortingMethod.getComparator());
 		}
+		if (inverted) {
+			Collections.reverse(organizedList);
+		}
 		return organizedList;
+	}
+	
+	public boolean isInverted() {
+		return inverted;
+	}
+	
+	public void setInverted(boolean inverted) {
+		this.inverted = inverted;
 	}
 
 	private void removeNonPrioritizedAssignments(List<Assignment> modifiableList) {
