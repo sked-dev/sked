@@ -6,9 +6,9 @@ import org.junit.*;
 
 public class AssignmentListOrganizerTest {
 	
-	SkedDataContainer data;
-	List<Assignment> oldList;
-	AssignmentListOrganizer organizer;
+	private SkedDataContainer data;
+	private List<Assignment> oldList;
+	private AssignmentListOrganizer organizer;
 	
 	@Before
 	public void initializeSkedData() throws Exception {
