@@ -100,4 +100,16 @@ public class AssignmentListOrganizerTest {
 		Assert.assertEquals(newList.get(4).getName(), "Presentation");
 		Assert.assertEquals(newList.get(5).getName(), "On track project");
 	}
+	
+	@Test
+	public void testCompletionSortingMethodSortsByCompletionPercent() {
+		organizer.setSortingMethod(AssignmentSortingMethod.COMPLETION);
+		List<Assignment> newList = organizer.organize();
+		Assert.assertEquals(newList.get(0).getName(), "Mini assignment");
+		Assert.assertEquals(newList.get(1).getName(), "Presentation");
+		Assert.assertEquals(newList.get(2).getName(), "Big procrastination project");
+		Assert.assertEquals(newList.get(3).getName(), "Medium assignment (easy done)");
+		Assert.assertEquals(newList.get(4).getName(), "On track project");
+		Assert.assertEquals(newList.get(5).getName(), "Medium assignment (difficult done)");
+	}
 }
