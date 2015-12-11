@@ -185,7 +185,7 @@ public class Assignment {
 	public double getDaysPassedPercent() {
 		long numberOfAssignmentDays = Period.between(getStartDate(), getDueDate()).get(ChronoUnit.DAYS);
 		long numberOfDaysSinceStart = Period.between(getStartDate(), LocalDate.now()).get(ChronoUnit.DAYS);
-		return numberOfDaysSinceStart / numberOfAssignmentDays;
+		return (double)numberOfDaysSinceStart / numberOfAssignmentDays;
 	}
 
 	public void setSubtasks(List<Subtask> list) {

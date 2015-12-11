@@ -28,10 +28,13 @@ public class AssignmentOverview extends GridPane implements Initializable{
 	@FXML private DropShadow dropShadow;
 	
 	private Assignment assignment;
+	private ProgressBar progressBar;
 	
 	public AssignmentOverview(Assignment assignment) {
 		super();
+		progressBar = new ProgressBar(assignment);
 		this.assignment = assignment;
+		this.add(progressBar.getPaneasNode(), 1, 5);
 		configureFXMLHBox();
 	}
 	
