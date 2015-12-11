@@ -13,7 +13,10 @@ private Assignment finalProject = Assignment.Builder//
 			.andDueDate(LocalDate.of(2015, 12, 31))//
 			.andStartDate(LocalDate.of(2014, 3, 29))//
 			.build();
+
 	private Assignment clasHomework;
+	private Course clas101 = new Course("CLAS 101");
+	private Course clas202 = new Course("CLAS 202");
 	
 	private LocalDate testToday = LocalDate.of(2015, 1, 1);
 	
@@ -23,7 +26,6 @@ private Assignment finalProject = Assignment.Builder//
 				.withName("CLAS homework")//
 				.andDueDate(LocalDate.of(2015, 12, 31))//
 				.andStartDate(LocalDate.of(2014, 3, 29))//
-				.andCourseIndex(1)//
 				.build();
 	}
 
@@ -129,18 +131,18 @@ private Assignment finalProject = Assignment.Builder//
 	
 	@Test
 	public void testAssignmentHasNoCourse() {
-		Assert.assertNull(finalProject.getCourseIndex());
+		Assert.assertNull(finalProject.getCourse());
+		Assert.assertFalse(finalProject.hasCourse());
 	}
 	
 	@Test
 	public void testCourseIsClas101() {
-		Assert.assertEquals(clasHomework.getCourseIndex(), 1);
+		Assert.assertEquals(clasHomework.getCourse(), clas101);
 	}
 	
 	@Test
 	public void testCourseBecomesClas202() {
-		clasHomework.setCourseIndex(2);
-		Assert.assertEquals(clasHomework.getCourseIndex(), 2);
+		clasHomework.setCourse(clas202)	;
 	}
 
 	@Test

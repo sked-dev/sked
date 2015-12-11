@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import edu.bsu.sked.model.Course;
 import edu.bsu.sked.model.SkedDataWriteFailedException;
@@ -26,7 +25,7 @@ public class CourseViewPane extends BorderPane implements Initializable, Navigat
 	@FXML private VBox courseOverviewBox;
 	@FXML private Button addCourseButton;
 	@FXML private TextField courseNameField;
-	private Set<Course> courses;
+	private List<Course> courses;
 	private List<CourseOverview> overviews = new ArrayList<>();
 	
 	public CourseViewPane() {

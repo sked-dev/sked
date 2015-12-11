@@ -2,6 +2,7 @@ package edu.bsu.sked.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -51,7 +52,12 @@ public class CourseOverview extends VBox implements Initializable  {
 	}
 
 	private List<Assignment> getCourseAssignments() {
-		return course.getAssignments();
+		List<Assignment> assignments = new ArrayList<>();
+		for (Assignment assignment : SkedApplication.getSkedData().getAssignments())
+			if (course.equals(assignment.getCourse())) {
+				assignments.add(assignment);
+			}
+		return assignments;
 	}
 
 	private void fillCourseFields() {

@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.junit.*;
 
-import edu.bsu.sked.view.SkedApplication;
-
 public class AssignmentListOrganizerTest {
 	
 	private SkedDataContainer data;
@@ -39,7 +37,7 @@ public class AssignmentListOrganizerTest {
 		organizer.setFilterByCoursePriority(true);
 		List<Assignment> newList = organizer.organize();
 		for (Assignment assignment : newList) {
-			Assert.assertTrue(SkedApplication.getSkedData().getCourse(assignment.getCourseIndex()).isPrioritized());
+			Assert.assertTrue(assignment.getCourse().isPrioritized());
 		}
 	}
 	

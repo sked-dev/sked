@@ -1,7 +1,6 @@
 package edu.bsu.sked.model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class SkedDataFile {
@@ -23,7 +22,7 @@ public class SkedDataFile {
 		SkedDataFileReader reader = createReader();
 		try {
 			return reader.read();
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			throw new SkedDataReadFailedException("The file exists but could not be read.");
 		}
 	}

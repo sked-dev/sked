@@ -13,7 +13,7 @@ public class Assignment {
 		private LocalDate dueDate = null;
 		private LocalDate startDate = LocalDate.now();
 		private ArrayList<Subtask> subtasks = new ArrayList<>();
-		private int courseIndex;
+		private Course course = null;
 		
 		public static Assignment emptyAssignment() {
 			Builder b = new Builder();
@@ -45,8 +45,8 @@ public class Assignment {
 			return this;
 		}
 
-		public Builder andCourseIndex(int courseIndex) {
-			this.courseIndex = courseIndex;
+		public Builder andCourse(Course course) {
+			this.course = course;
 			return this;
 		}
 
@@ -77,14 +77,15 @@ public class Assignment {
 	private LocalDate dueDate;
 	private LocalDate startDate;
 	private List<Subtask> subtasks;
-	private int courseIndex;
+	private transient Course course;
+
 
 	private Assignment(Builder assignmentBuilder) {
 		name = assignmentBuilder.name;
 		dueDate = assignmentBuilder.dueDate;
 		startDate = assignmentBuilder.startDate;
 		subtasks = assignmentBuilder.subtasks;
-		courseIndex = assignmentBuilder.courseIndex;
+		course = assignmentBuilder.course;
 	}
 
 	public String getName() {
@@ -192,11 +193,15 @@ public class Assignment {
 		this.subtasks = list;
 	}
 
-	public int getCourseIndex() {
-		return courseIndex;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setCourseIndex(int courseIndex) {
-		this.courseIndex = courseIndex;
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public boolean hasCourse() {
+		return course != null;
 	}
 }
