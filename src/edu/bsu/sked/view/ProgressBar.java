@@ -1,83 +1,82 @@
 package edu.bsu.sked.view;
 
+
+
+import edu.bsu.sked.model.Assignment;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class ProgressBar {
 
-	
+	Assignment assignment;
 	private static final double RECTANGLE_ARC = 10.0;
 	private static final double RECTANGLE_ANCHOR = 20.0;
-	private static final double INCREMENT = 10.0;
+	private double CONTAINER_WIDTH = 100.0;
+	
 
-	GridPane primaryPane = new GridPane();
-	Rectangle rectangle = new Rectangle(100,20);
-	Rectangle progressBar = new Rectangle(0,20);
+	Rectangle progressBarContainer = new Rectangle(CONTAINER_WIDTH,20);
+	Rectangle actualProgressBar = new Rectangle(CONTAINER_WIDTH,20);
+	BorderPane pane = new BorderPane();
 	Label percentLabel = new Label();
+	double actualProgress = CONTAINER_WIDTH/2;
+	double expectedProgress = CONTAINER_WIDTH;
 	
 
 
-	public GridPane buildProgressBar(){
-		percentLabel.setText("0.0%");
-		AnchorPane second = new AnchorPane(rectangle);
-		primaryPane.add(percentLabel, 1,3);
-		percentLabel.setText("0.0%");
-		AnchorPane progressBarFrame = new AnchorPane(rectangle);
-		primaryPane.add(progressBarFrame, 0, 1);
+	public  ProgressBar(Assignment assignment){
+		this.assignment = assignment;
+		pane.setBottom(percentLabel);
+		
+		AnchorPane progressBarFrame = new AnchorPane(progressBarContainer);
+		pane.setCenter(progressBarFrame);
 
-		primaryPane.add(percentLabel, 1,3);
-		primaryPane.add(second, 0, 1);
+		
+		progressBarContainer.setFill(Color.ANTIQUEWHITE);
+		progressBarContainer.setArcHeight(RECTANGLE_ARC);
+		progressBarContainer.setArcWidth(RECTANGLE_ARC);
+		AnchorPane.setTopAnchor(progressBarContainer, RECTANGLE_ANCHOR);
+		AnchorPane.setLeftAnchor(progressBarContainer, RECTANGLE_ANCHOR);
 
-		AnchorPane.setTopAnchor(rectangle, RECTANGLE_ANCHOR);
-		AnchorPane.setLeftAnchor(rectangle, RECTANGLE_ANCHOR);
-		rectangle.setFill(Color.ANTIQUEWHITE);
-		rectangle.setArcHeight(RECTANGLE_ARC);
-		rectangle.setArcWidth(RECTANGLE_ARC);
-		progressBar.setFill(Color.GREEN);
-		progressBar.setArcHeight(RECTANGLE_ARC);
-		progressBar.setArcWidth(RECTANGLE_ARC);
-		second.getChildren().add(new AnchorPane(progressBar));
-		AnchorPane.setTopAnchor(progressBar, RECTANGLE_ANCHOR);
-		AnchorPane.setLeftAnchor(progressBar, RECTANGLE_ANCHOR);
 
-		progressBarFrame.getChildren().add(new AnchorPane(progressBar));
-		AnchorPane.setTopAnchor(progressBar, RECTANGLE_ANCHOR);
-		AnchorPane.setLeftAnchor(progressBar, RECTANGLE_ANCHOR);
-		return primaryPane;
+		pane.setCenter(new AnchorPane(actualProgressBar));
+		actualProgressBar.setFill(Color.GREEN);
+		actualProgressBar.setArcHeight(RECTANGLE_ARC);
+		actualProgressBar.setArcWidth(RECTANGLE_ARC);
+		AnchorPane.setTopAnchor(actualProgressBar, RECTANGLE_ANCHOR);
+		AnchorPane.setLeftAnchor(actualProgressBar, RECTANGLE_ANCHOR);
+		progressCalculator();
+		
 		
 
 	}
-	public void refreshProgress(){
-		if(maxWidthCheck()==false){
-			Double width = progressBar.getWidth(); 
-			width = getNewWidth();
-			width = width + INCREMENT;
-			progressBar.setWidth(width);
-			percentLabel.setText(getNewWidth() + "%");
-			System.out.println(getNewWidth() + "%");
-		}if(maxWidthCheck()==true){
-			percentLabel.setText("Task Completed!");
-
-			System.out.println("Task Completed!");
-
-			System.out.println(INCREMENT);
-
-		}
+	private void progressCalculator(){
+			actualProgress = assignment.getCompletionPercent() * actualProgressBar.getWidth();
+		//	expectedProgress = assignment.getRelativeDateCompletionPercent();
+			actualProgressBar.setWidth(expectedProgress);
+			percentLabel.setText(widthCheck());
 
 	}
-	private boolean maxWidthCheck() {
-		while(progressBar.getWidth() < rectangle.getWidth()){
-		return false;
+	private String widthCheck() {
+		if(actualProgress >= progressBarContainer.getWidth()){
+			actualProgressBar.setFill(Color.GRAY);
+			return "Assignment Complete!";
 		}
-		progressBar.setFill(Color.GRAY);
-		return true;
+		if(expectedProgress > actualProgress){
+			actualProgressBar.setFill(Color.RED);
+			return "You are behind!";
+		}
+		if(expectedProgress < actualProgress){
+			actualProgressBar.setFill(Color.GREEN);
+			return "You are ahead!";
+		}
+		return "";
+
 	
 	}
-	private double getNewWidth(){
-		return progressBar.getWidth();
+	public BorderPane getPaneasNode(){
+		return pane;
 	}
-	
 }
