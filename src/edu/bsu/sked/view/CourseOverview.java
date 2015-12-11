@@ -52,11 +52,7 @@ public class CourseOverview extends VBox implements Initializable  {
 	}
 
 	private List<Assignment> getCourseAssignments() {
-		List<Assignment> assignments = new ArrayList<>();
-		for (Assignment assignment : SkedApplication.getSkedData().getAssignments()) 
-			if (course.equals(assignment.getCourse()))
-				assignments.add(assignment);
-		return assignments;
+		return course.getAssignments();
 	}
 
 	private void fillCourseFields() {

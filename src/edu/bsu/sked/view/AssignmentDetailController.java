@@ -1,6 +1,7 @@
 package edu.bsu.sked.view;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
@@ -106,7 +107,7 @@ public class AssignmentDetailController implements Initializable {
 		assignmentNameField.setText(assignment.getName());
 		assignmentStartDateField.setValue(assignment.getStartDate());
 		assignmentDueDateField.setValue(assignment.getDueDate());
-		coursesComboBox.setValue(assignment.getCourse());
+		coursesComboBox.setValue(SkedApplication.getSkedData().getCourse(assignment.getCourseIndex()));
 		subtaskList = new SubtaskListVBox(assignment.getSubtasks());
 	}
 
@@ -199,18 +200,17 @@ public class AssignmentDetailController implements Initializable {
 		} else if (assignment == null) {
 			assignment = Assignment.Builder//
 					.withName(assignmentNameField.getText())//
-					.andCourse(coursesComboBox.getValue())//
 					.andStartDate(assignmentStartDateField.getValue())//
 					.andDueDate(assignmentDueDateField.getValue())//
 					.andSubtasks(subtaskList.getSubtasks())//
 					.build();
-			SkedApplication.getSkedData().getAssignments().add(assignment);
+			SkedApplication.getSkedData().getCourse(coursesComboBox.getSelectionModel().getSelectedIndex()).addAssignment(assignment);
 		} else {
 			assignment.setName(assignmentNameField.getText());
 			assignment.setStartDate(assignmentStartDateField.getValue());
 			assignment.setDueDate(assignmentDueDateField.getValue());
-			assignment.setCourse(coursesComboBox.getValue());
 			assignment.setSubtasks(subtaskList.getSubtasks());
+			assignment.setCourseIndex(coursesComboBox.getSelectionModel().getSelectedIndex());
 		}
 		try {
 			SkedApplication.saveSkedData();

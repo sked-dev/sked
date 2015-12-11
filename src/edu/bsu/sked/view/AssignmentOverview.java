@@ -35,7 +35,7 @@ public class AssignmentOverview extends GridPane {
 		assignmentName.setText(assignment.getName());
 		assignmentDueDate.setText(assignment.getRelativeDueDate());
 		assignmentTaskCompletion.setText(assignment.getSubtaskCompletionDescription());
-		assignmentCourse.setText(assignment.getCourse().getName());
+		assignmentCourse.setText(SkedApplication.getSkedData().getCourse(assignment.getCourseIndex()).getName());
 	}
 
 	private Hyperlink getEditHyperlink() {

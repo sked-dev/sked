@@ -1,9 +1,15 @@
 package edu.bsu.sked.model;
 
-public class Course {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Course {
+	
+	public static final Course NONE = new Course("none");
+	
 	private String name;
 	private boolean prioritized = false;
+	private List<Assignment> assignments = new ArrayList<Assignment>();
 
 	public Course(String name) {
 		this.name = validateName(name);
@@ -13,6 +19,12 @@ public class Course {
 		if (name.isEmpty())
 			throw new IllegalArgumentException("Class name cannot be blank.");
 		return name;
+	}
+	public List<Assignment> getAssignments() {
+		return assignments;
+	}
+	public void addAssignment(Assignment assignment) { //TODO: test
+		assignments.add(assignment);
 	}
 
 	public void setName(String name) {
