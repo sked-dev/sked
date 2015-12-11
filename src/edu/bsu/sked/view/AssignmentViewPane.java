@@ -91,7 +91,8 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 	
 	@FXML
 	private void sortByCompletion() {
-		
+		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.COMPLETION);
+		refresh();
 	}
 	
 	@FXML
