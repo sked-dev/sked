@@ -19,7 +19,7 @@ public class SkedDataContainer {
 		public static Builder getBuilder() {
 			return new Builder();
 		}
-
+		
 		public Builder withAssignmentList(List<Assignment> assignments) {
 			this.assignments = new ArrayList<Assignment>(assignments);
 			return this;
@@ -73,5 +73,4 @@ public class SkedDataContainer {
 	public UserName getName() {
 		return name;
 	}
-
 }

@@ -1,7 +1,7 @@
 package edu.bsu.sked.model;
 
 public class Course {
-
+	
 	private String name;
 	private boolean prioritized = false;
 

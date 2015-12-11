@@ -79,6 +79,7 @@ public class Assignment {
 	private List<Subtask> subtasks;
 	private transient Course course;
 
+
 	private Assignment(Builder assignmentBuilder) {
 		name = assignmentBuilder.name;
 		dueDate = assignmentBuilder.dueDate;
@@ -195,12 +196,12 @@ public class Assignment {
 	public Course getCourse() {
 		return course;
 	}
-	
-	public boolean hasCourse() {
-		return course != null;
-	}
 
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+
+	public boolean hasCourse() {
+		return course != null;
 	}
 }
