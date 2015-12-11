@@ -2,6 +2,7 @@ package edu.bsu.sked.model;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -176,9 +177,15 @@ public class Assignment {
 
 	public double getCompletionPercent() {
 		if (getWeightedDifficulty() == 0) {
-			return 0;
+			return getDaysPassedPercent();
 		} else
 			return (double) getWeightedCompletion() / (double) getWeightedDifficulty();
+	}
+	
+	public double getDaysPassedPercent() {
+		long numberOfAssignmentDays = Period.between(getStartDate(), getDueDate()).get(ChronoUnit.DAYS);
+		long numberOfDaysSinceStart = Period.between(getStartDate(), LocalDate.now()).get(ChronoUnit.DAYS);
+		return numberOfDaysSinceStart / numberOfAssignmentDays;
 	}
 
 	public void setSubtasks(List<Subtask> list) {
