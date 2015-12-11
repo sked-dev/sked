@@ -17,7 +17,7 @@ import javafx.stage.WindowEvent;
 public class AssignmentDetailController implements Initializable {
 
 	public enum Mode {
-		VIEW, EDIT, CREATE
+		EDIT, CREATE
 	}
 
 	@FXML private Label stageTitle;
@@ -74,10 +74,7 @@ public class AssignmentDetailController implements Initializable {
 	}
 
 	private void configureMode() {
-		if (mode == Mode.VIEW) {
-			makeEditable(false);
-			configureViewButtons();
-		} else if (mode == Mode.EDIT) {
+		if (mode == Mode.EDIT) {
 			makeEditable(true);
 			configureEditButtons();
 		} else {
@@ -106,7 +103,7 @@ public class AssignmentDetailController implements Initializable {
 		assignmentNameField.setText(assignment.getName());
 		assignmentStartDateField.setValue(assignment.getStartDate());
 		assignmentDueDateField.setValue(assignment.getDueDate());
-		coursesComboBox.setValue(assignment.getCourse());
+		coursesComboBox.setValue(SkedApplication.getSkedData().getCourse(assignment.getCourseIndex()));
 		subtaskList = new SubtaskListVBox(assignment.getSubtasks());
 	}
 
@@ -115,16 +112,6 @@ public class AssignmentDetailController implements Initializable {
 		assignmentStartDateField.setEditable(editable);
 		assignmentDueDateField.setEditable(editable);
 		//subtasks.setEditable(editable);
-	}
-
-	private void configureViewButtons() {
-		saveButton.setManaged(false);
-		revertButton.setManaged(false);
-		editButton.setManaged(true);
-		deleteButton.setManaged(true);
-		deleteSeparator.setManaged(true);
-		addButton.setManaged(true);
-		closeButton.setText("Close");
 	}
 
 	private void configureEditButtons() {
@@ -185,10 +172,9 @@ public class AssignmentDetailController implements Initializable {
 
 	@FXML
 	public void revert() {
-		/*if (confirm("This will delete all of your changes to this assignment.  Are you sure?")) {
-			setMode(Mode.VIEW);
-			fillContent();
-		}*/
+	if (confirm("This will delete all of your changes to this assignment.  Are you sure?")) {
+		fillContent();
+		}
 	}
 
 	@FXML
@@ -199,18 +185,17 @@ public class AssignmentDetailController implements Initializable {
 		} else if (assignment == null) {
 			assignment = Assignment.Builder//
 					.withName(assignmentNameField.getText())//
-					.andCourse(coursesComboBox.getValue())//
 					.andStartDate(assignmentStartDateField.getValue())//
 					.andDueDate(assignmentDueDateField.getValue())//
 					.andSubtasks(subtaskList.getSubtasks())//
 					.build();
-			SkedApplication.getSkedData().getAssignments().add(assignment);
+			SkedApplication.getSkedData().getCourse(coursesComboBox.getSelectionModel().getSelectedIndex()).addAssignment(assignment);
 		} else {
 			assignment.setName(assignmentNameField.getText());
 			assignment.setStartDate(assignmentStartDateField.getValue());
 			assignment.setDueDate(assignmentDueDateField.getValue());
-			assignment.setCourse(coursesComboBox.getValue());
 			assignment.setSubtasks(subtaskList.getSubtasks());
+			assignment.setCourseIndex(coursesComboBox.getSelectionModel().getSelectedIndex());
 		}
 		try {
 			SkedApplication.saveSkedData();
@@ -250,7 +235,6 @@ public class AssignmentDetailController implements Initializable {
 			SkedApplication.saveSkedData();
 			close();
 		} catch (SkedDataWriteFailedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

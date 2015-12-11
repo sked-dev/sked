@@ -62,7 +62,7 @@ public class AssignmentOverview extends GridPane implements Initializable{
 		assignmentNameLabel.setText(assignment.getName());
 		timeLeftLabel.setText(assignment.getRelativeDueDate());
 		subtaskLeftLabel.setText(assignment.getSubtaskCompletionDescription());
-		courseNameLabel.setText(assignment.getCourse().getName());
+		courseNameLabel.setText(SkedApplication.getSkedData().getCourse(assignment.getCourseIndex()).getName());
 	}
 	
 	private void configureFXMLHBox() {

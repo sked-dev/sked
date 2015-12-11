@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.bsu.sked.view.SkedApplication;
+
 public class AssignmentListOrganizer {
 	
 	private List<Assignment> oldList;
@@ -40,7 +42,7 @@ public class AssignmentListOrganizer {
 	private void removeNonPrioritizedAssignments(List<Assignment> modifiableList) {
 		LinkedList<Assignment> safeCopy = new LinkedList<>(modifiableList);
 		for (Assignment assignment : safeCopy) {
-			if (!assignment.getCourse().isPrioritized())
+			if (SkedApplication.getSkedData().getCourse(assignment.getCourseIndex()).isPrioritized())
 				modifiableList.remove(assignment);
 		}
 	}
