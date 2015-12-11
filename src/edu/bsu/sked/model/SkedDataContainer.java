@@ -1,22 +1,20 @@
 package edu.bsu.sked.model;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 public class SkedDataContainer {
 
 	private final List<Assignment> assignments;
-	private final Set<Course> courses;
+	private final List<Course> courses;
 	private final UUID uuid;
 	private final UserName name;
 
 	public static class Builder {
 		private List<Assignment> assignments = new ArrayList<>();
 		private UserName name = UserName.unidentifiedUser();
-		private Set<Course> courses = new LinkedHashSet<Course>();
+		private List<Course> courses = new ArrayList<Course>();
 
 		public static Builder getBuilder() {
 			return new Builder();
@@ -32,8 +30,8 @@ public class SkedDataContainer {
 			return this;
 		}
 
-		public Builder withCourses(Set<Course> courses) {
-			this.courses = new LinkedHashSet<Course>(courses);
+		public Builder withCourses(List<Course> courses) {
+			this.courses = new ArrayList<Course>(courses);
 			return this;
 		}
 
@@ -55,7 +53,7 @@ public class SkedDataContainer {
 
 	private SkedDataContainer() {
 		assignments = new ArrayList<Assignment>();
-		courses = new LinkedHashSet<Course>();
+		courses = new ArrayList<Course>();
 		uuid = UUID.randomUUID();
 		name = UserName.unidentifiedUser();
 	}
@@ -64,7 +62,7 @@ public class SkedDataContainer {
 		return assignments;
 	}
 
-	public Set<Course> getCourses() {
+	public List<Course> getCourses() {
 		return courses;
 	}
 
