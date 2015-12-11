@@ -1,6 +1,5 @@
 package edu.bsu.sked.model;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
@@ -184,8 +183,8 @@ public class Assignment {
 	}
 	
 	public double getDaysPassedPercent() {
-		long numberOfAssignmentDays = Duration.between(getStartDate(), getDueDate()).get(ChronoUnit.DAYS);
-		long numberOfDaysSinceStart = Duration.between(getStartDate(), LocalDate.now()).get(ChronoUnit.DAYS);
+		long numberOfAssignmentDays = Period.between(getStartDate(), getDueDate()).get(ChronoUnit.DAYS);
+		long numberOfDaysSinceStart = Period.between(getStartDate(), LocalDate.now()).get(ChronoUnit.DAYS);
 		return numberOfDaysSinceStart / numberOfAssignmentDays;
 	}
 
