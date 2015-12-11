@@ -27,7 +27,7 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 		super();
 		setUpPane();
 	}
-	
+
 	public void refresh(){
 		setUpAssignmentGrid();
 	}
@@ -42,7 +42,7 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	@Override
 	public void initialize(URL resource, ResourceBundle resourceBundle) {
 		refresh();
@@ -62,42 +62,50 @@ public class AssignmentViewPane extends BorderPane implements NavigationTarget, 
 	@FXML
 	private void sortByAddOrder() {
 		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.NONE);
+		assignmentOrganizer.setInverted(false);
 		refresh();
 	}
 	
 	@FXML
 	private void sortByName() {
 		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.NAME);
+		assignmentOrganizer.setInverted(false);
 		refresh();
 	}
 	
 	@FXML
 	private void sortByCourse() {
 		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.COURSE);
+		assignmentOrganizer.setInverted(false);
 		refresh();
 	}
 	
 	@FXML
 	private void sortByStartDate() {
 		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.START_DATE);
+		assignmentOrganizer.setInverted(false);
 		refresh();
 	}
 	
 	@FXML
 	private void sortByDueDate() {
 		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.DUE_DATE);
+		assignmentOrganizer.setInverted(false);
 		refresh();
 	}
 	
 	@FXML
 	private void sortByCompletion() {
 		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.COMPLETION);
+		assignmentOrganizer.setInverted(false);
 		refresh();
 	}
 	
 	@FXML
 	private void sortByDifficulty() {
-		// TODO Implement before merging to master
+		assignmentOrganizer.setSortingMethod(AssignmentSortingMethod.DIFFICULTY);
+		assignmentOrganizer.setInverted(true);
+		refresh();
 	}
 	
 	@FXML

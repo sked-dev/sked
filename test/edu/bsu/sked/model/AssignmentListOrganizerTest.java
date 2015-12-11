@@ -54,6 +54,19 @@ public class AssignmentListOrganizerTest {
 	}
 	
 	@Test
+	public void testInversionReversesOrderOfList() {
+		organizer.setSortingMethod(AssignmentSortingMethod.DEFAULT);
+		organizer.setInverted(true);
+		List<Assignment> newList = organizer.organize();
+		Assert.assertEquals(newList.get(5).getName(), "Mini assignment");
+		Assert.assertEquals(newList.get(4).getName(), "Big procrastination project");
+		Assert.assertEquals(newList.get(3).getName(), "Presentation");
+		Assert.assertEquals(newList.get(2).getName(), "On track project");
+		Assert.assertEquals(newList.get(1).getName(), "Medium assignment (easy done)");
+		Assert.assertEquals(newList.get(0).getName(), "Medium assignment (difficult done)");
+	}
+	
+	@Test
 	public void testNameSortingMethodSortsByName() {
 		organizer.setSortingMethod(AssignmentSortingMethod.NAME);
 		List<Assignment> newList = organizer.organize();
@@ -111,5 +124,17 @@ public class AssignmentListOrganizerTest {
 		Assert.assertEquals(newList.get(3).getName(), "Medium assignment (easy done)");
 		Assert.assertEquals(newList.get(4).getName(), "On track project");
 		Assert.assertEquals(newList.get(5).getName(), "Medium assignment (difficult done)");
+	}
+	
+	@Test
+	public void testDifficultySortingMethodSortsByDifficulty() {
+		organizer.setSortingMethod(AssignmentSortingMethod.DIFFICULTY);
+		List<Assignment> newList = organizer.organize();
+		Assert.assertEquals(newList.get(0).getName(), "Presentation");
+		Assert.assertEquals(newList.get(1).getName(), "Mini assignment");
+		Assert.assertEquals(newList.get(2).getName(), "Medium assignment (easy done)");
+		Assert.assertEquals(newList.get(3).getName(), "Medium assignment (difficult done)");
+		Assert.assertEquals(newList.get(4).getName(), "Big procrastination project");
+		Assert.assertEquals(newList.get(5).getName(), "On track project");
 	}
 }
